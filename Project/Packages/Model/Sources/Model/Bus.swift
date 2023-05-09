@@ -11,15 +11,19 @@ public struct Bus {
 		case unknown
 	}
 	
-	let linea: String
-	let destination: String
-	let eta: ETA
+	public let linea: String
+	public let destination: String
+	public let eta: ETA
 	
 	public init(linea: String, destination: String, eta: ETA) {
 		self.linea = linea
 		self.destination = destination
 		self.eta = eta
 	}
+}
+
+public extension Bus {
+	static let example = Bus(linea: "19", destination: "La Malvarosa", eta: .minutes(3))
 }
 
 extension Bus.ETA: Comparable {

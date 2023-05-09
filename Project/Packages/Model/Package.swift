@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
 	name: "Model",
-	platforms: [.watchOS(.v9)],
+	platforms: [.watchOS(.v9), .iOS(.v16)],
 	products: [
 		.library(
 			name: "Model",

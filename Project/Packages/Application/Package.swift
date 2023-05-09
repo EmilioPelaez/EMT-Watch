@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
 	name: "Application",
-	platforms: [.watchOS(.v9)],
+	platforms: [.watchOS(.v9), .iOS(.v16)],
 	products: [
 		.library(
 			name: "Application",
@@ -14,6 +14,7 @@ let package = Package(
 	dependencies: [
 		.package(path: "../Shared"),
 		.package(path: "../SharedUI"),
+		.package(path: "../Model"),
 		.package(path: "../Networking"),
 		.package(url: "https://github.com/EmilioPelaez/HierarchyResponder", from: .init(1, 0, 0)),
 	],
@@ -23,6 +24,7 @@ let package = Package(
 			dependencies: [
 				"Shared",
 				"SharedUI",
+				"Model",
 				"Networking",
 				"HierarchyResponder",
 			]),

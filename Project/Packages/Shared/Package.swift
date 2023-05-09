@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
 	name: "Shared",
-	platforms: [.watchOS(.v9)],
+	platforms: [.watchOS(.v9), .iOS(.v16)],
 	products: [
 		.library(
 			name: "Shared",
