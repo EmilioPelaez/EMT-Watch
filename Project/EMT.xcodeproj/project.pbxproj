@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		C8B7171D2A0AF1950041D53D /* EMT Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = C8B7171C2A0AF1950041D53D /* EMT Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C8B717222A0AF1950041D53D /* EMTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B717212A0AF1950041D53D /* EMTApp.swift */; };
-		C8B717242A0AF1950041D53D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B717232A0AF1950041D53D /* ContentView.swift */; };
 		C8B717262A0AF1960041D53D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8B717252A0AF1960041D53D /* Assets.xcassets */; };
 		C8B717292A0AF1960041D53D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8B717282A0AF1960041D53D /* Preview Assets.xcassets */; };
 		C8B7173E2A0AF5950041D53D /* Application in Frameworks */ = {isa = PBXBuildFile; productRef = C8B7173D2A0AF5950041D53D /* Application */; };
@@ -47,7 +46,6 @@
 		C8B717162A0AF1950041D53D /* EMT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EMT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8B7171C2A0AF1950041D53D /* EMT Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EMT Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8B717212A0AF1950041D53D /* EMTApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EMTApp.swift; sourceTree = "<group>"; };
-		C8B717232A0AF1950041D53D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C8B717252A0AF1960041D53D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C8B717282A0AF1960041D53D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C8B717352A0AF43B0041D53D /* Application */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Application; path = Packages/Application; sourceTree = "<group>"; };
@@ -89,7 +87,6 @@
 			isa = PBXGroup;
 			children = (
 				C8B717212A0AF1950041D53D /* EMTApp.swift */,
-				C8B717232A0AF1950041D53D /* ContentView.swift */,
 				C8B717252A0AF1960041D53D /* Assets.xcassets */,
 				C8B717272A0AF1960041D53D /* Preview Content */,
 			);
@@ -225,7 +222,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C8B717242A0AF1950041D53D /* ContentView.swift in Sources */,
 				C8B717222A0AF1950041D53D /* EMTApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

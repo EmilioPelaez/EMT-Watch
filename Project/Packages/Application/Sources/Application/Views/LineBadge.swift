@@ -10,7 +10,7 @@ struct LineBadge: View {
 	var body: some View {
 		Text("XX")
 			.font(.system(.callout, design: .rounded, weight: .medium))
-			.padding(5)
+			.padding(4)
 			.overlay {
 				ZStack {
 					Circle()
