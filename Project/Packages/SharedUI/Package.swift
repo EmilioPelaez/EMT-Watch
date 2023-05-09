@@ -4,30 +4,28 @@
 import PackageDescription
 
 let package = Package(
-	name: "Application",
+	name: "SharedUI",
 	platforms: [.watchOS(.v9)],
 	products: [
 		.library(
-			name: "Application",
-			targets: ["Application"]),
+			name: "SharedUI",
+			targets: ["SharedUI"]),
 	],
 	dependencies: [
 		.package(path: "../Shared"),
-		.package(path: "../SharedUI"),
-		.package(path: "../Networking"),
+		.package(url: "https://github.com/EmilioPelaez/CGMath", from: .init(1, 0, 0)),
 		.package(url: "https://github.com/EmilioPelaez/HierarchyResponder", from: .init(1, 0, 0)),
 	],
 	targets: [
 		.target(
-			name: "Application",
+			name: "SharedUI",
 			dependencies: [
-				"Shared",
-				"SharedUI",
-				"Networking",
-				"HierarchyResponder",
+			"Shared",
+			"CGMath",
+			"HierarchyResponder",
 			]),
 		.testTarget(
-			name: "ApplicationTests",
-			dependencies: ["Application"]),
+			name: "SharedUITests",
+			dependencies: ["SharedUI"]),
 	]
 )

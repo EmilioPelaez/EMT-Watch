@@ -40,6 +40,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C86A794D2A0AF69E0048D834 /* Shared */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Shared; path = Packages/Shared; sourceTree = "<group>"; };
+		C86A794E2A0AF6AB0048D834 /* SharedUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SharedUI; path = Packages/SharedUI; sourceTree = "<group>"; };
+		C86A794F2A0AF7710048D834 /* HierarchyResponder */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = HierarchyResponder; path = ../../../Frameworks/HierarchyResponder; sourceTree = "<group>"; };
 		C8B717162A0AF1950041D53D /* EMT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EMT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8B7171C2A0AF1950041D53D /* EMT Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EMT Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8B717212A0AF1950041D53D /* EMTApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EMTApp.swift; sourceTree = "<group>"; };
@@ -103,8 +106,11 @@
 		C8B717342A0AF43B0041D53D /* Packages */ = {
 			isa = PBXGroup;
 			children = (
+				C86A794D2A0AF69E0048D834 /* Shared */,
+				C86A794E2A0AF6AB0048D834 /* SharedUI */,
 				C8B717352A0AF43B0041D53D /* Application */,
 				C8B717362A0AF44E0041D53D /* Networking */,
+				C86A794F2A0AF7710048D834 /* HierarchyResponder */,
 			);
 			name = Packages;
 			sourceTree = "<group>";

@@ -4,24 +4,21 @@
 import PackageDescription
 
 let package = Package(
-	name: "Networking",
+	name: "Shared",
 	platforms: [.watchOS(.v9)],
 	products: [
 		.library(
-			name: "Networking",
-			targets: ["Networking"]),
+			name: "Shared",
+			targets: ["Shared"]),
 	],
 	dependencies: [
-		.package(path: "../Shared"),
 	],
 	targets: [
 		.target(
-			name: "Networking",
-			dependencies: [
-				"Shared",
-			]),
+			name: "Shared",
+			dependencies: []),
 		.testTarget(
-			name: "NetworkingTests",
-			dependencies: ["Networking"]),
+			name: "SharedTests",
+			dependencies: ["Shared"]),
 	]
 )
