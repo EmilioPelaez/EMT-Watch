@@ -5,25 +5,26 @@
 import Model
 import SwiftUI
 
-struct BusLineView: View {
+struct IncomingBusView: View {
 	let bus: Bus
 	
 	var body: some View {
 		HStack(alignment: .firstTextBaseline) {
 			LineBadge(name: bus.linea)
 			Text(bus.destination)
+				.foregroundColor(.secondary)
 				.font(.caption2)
 				.minimumScaleFactor(0.5)
 				.lineLimit(1)
 			Spacer()
-			BusETAView(eta: .next)
+			BusETAView(eta: bus.eta)
 				.layoutPriority(1)
 		}
 	}
 }
 
-struct BusLineView_Previews: PreviewProvider {
+struct IncomingBusView_Previews: PreviewProvider {
 	static var previews: some View {
-		BusLineView(bus: .example)
+		IncomingBusView(bus: .example)
 	}
 }

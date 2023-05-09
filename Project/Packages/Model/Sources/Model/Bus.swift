@@ -4,11 +4,15 @@
 
 import Foundation
 
-public struct Bus {
+public struct Bus: Identifiable {
 	public enum ETA {
 		case next
 		case minutes(Int)
 		case unknown
+	}
+	
+	public var id: String {
+		linea + destination + eta.description
 	}
 	
 	public let linea: String
@@ -24,6 +28,25 @@ public struct Bus {
 
 public extension Bus {
 	static let example = Bus(linea: "19", destination: "La Malvarosa", eta: .minutes(3))
+}
+
+public extension Array<Bus> {
+	static let example = [
+		Bus(linea: "19", destination: "La Malvarosa", eta: .next),
+		Bus(linea: "6", destination: "Hospital La Fe", eta: .minutes(3)),
+		Bus(linea: "19", destination: "La Malvarosa", eta: .minutes(12)),
+		Bus(linea: "6", destination: "Hospital La Fe", eta: .unknown),
+	]
+}
+
+extension Bus.ETA: CustomStringConvertible {
+	public var description: String {
+		switch self {
+		case .next: return "now"
+		case .minutes(let int): return "\(int) min"
+		case .unknown: return "??"
+		}
+	}
 }
 
 extension Bus.ETA: Comparable {

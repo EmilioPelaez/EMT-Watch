@@ -8,19 +8,28 @@ struct LineBadge: View {
 	let name: String
 	
 	var body: some View {
-		Text(name)
+		Text("XX")
 			.font(.system(.callout, design: .rounded, weight: .medium))
-			.foregroundColor(.white)
 			.padding(5)
-			.background {
-				Circle()
-					.foregroundStyle(.red)
+			.overlay {
+				ZStack {
+					Circle()
+						.foregroundStyle(.red)
+					Text(name)
+						.font(.system(.callout, design: .rounded, weight: .medium))
+						.minimumScaleFactor(0.25)
+						.foregroundColor(.white)
+				}
 			}
 	}
 }
 
 struct LineBadge_Previews: PreviewProvider {
 	static var previews: some View {
-		LineBadge(name: "19")
+		VStack {
+			LineBadge(name: "19")
+			LineBadge(name: "9")
+			LineBadge(name: "hello")
+		}
 	}
 }
