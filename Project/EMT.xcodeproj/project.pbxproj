@@ -12,6 +12,7 @@
 		C8B717242A0AF1950041D53D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B717232A0AF1950041D53D /* ContentView.swift */; };
 		C8B717262A0AF1960041D53D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8B717252A0AF1960041D53D /* Assets.xcassets */; };
 		C8B717292A0AF1960041D53D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8B717282A0AF1960041D53D /* Preview Assets.xcassets */; };
+		C8B7173E2A0AF5950041D53D /* Application in Frameworks */ = {isa = PBXBuildFile; productRef = C8B7173D2A0AF5950041D53D /* Application */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,8 @@
 		C8B717232A0AF1950041D53D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C8B717252A0AF1960041D53D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C8B717282A0AF1960041D53D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C8B717352A0AF43B0041D53D /* Application */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Application; path = Packages/Application; sourceTree = "<group>"; };
+		C8B717362A0AF44E0041D53D /* Networking */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Networking; path = Packages/Networking; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8B7173E2A0AF5950041D53D /* Application in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,7 +66,9 @@
 			isa = PBXGroup;
 			children = (
 				C8B717202A0AF1950041D53D /* EMT Watch App */,
+				C8B717342A0AF43B0041D53D /* Packages */,
 				C8B717172A0AF1950041D53D /* Products */,
+				C8B7173C2A0AF5950041D53D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -92,6 +98,22 @@
 				C8B717282A0AF1960041D53D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C8B717342A0AF43B0041D53D /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				C8B717352A0AF43B0041D53D /* Application */,
+				C8B717362A0AF44E0041D53D /* Networking */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		C8B7173C2A0AF5950041D53D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,6 +149,9 @@
 			dependencies = (
 			);
 			name = "EMT Watch App";
+			packageProductDependencies = (
+				C8B7173D2A0AF5950041D53D /* Application */,
+			);
 			productName = "EMT Watch App";
 			productReference = C8B7171C2A0AF1950041D53D /* EMT Watch App.app */;
 			productType = "com.apple.product-type.application";
@@ -442,6 +467,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C8B7173D2A0AF5950041D53D /* Application */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Application;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C8B717102A0AF1950041D53D /* Project object */;
 }
