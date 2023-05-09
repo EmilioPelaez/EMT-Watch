@@ -9,7 +9,7 @@ struct IncomingBusView: View {
 	let bus: Bus
 	
 	var body: some View {
-		HStack(alignment: .firstTextBaseline) {
+		HStack(alignment: .center) {
 			LineBadge(name: bus.linea)
 			Text(bus.destination)
 				.foregroundColor(.secondary)
