@@ -35,8 +35,6 @@ struct BusStopView: View {
 			}
 		}
 		.scrollable(!buses.isEmpty)
-		.navigationTitle("Stop")
-		.navigationBarTitleDisplayMode(.inline)
 	}
 }
 
