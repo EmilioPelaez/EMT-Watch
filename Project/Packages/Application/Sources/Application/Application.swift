@@ -8,7 +8,7 @@ public struct Application: View {
 	public init() {}
 	
 	public var body: some View {
-		StopSearchView()
+		BusStopRouter()
 	}
 }
 

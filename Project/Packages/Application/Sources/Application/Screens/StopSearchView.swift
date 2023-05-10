@@ -6,18 +6,18 @@ import SharedUI
 import SwiftUI
 
 struct StopSearchView: View {
+	@Environment(\.triggerEvent) var triggerEvent
+	
 	@State var station: String = ""
 	@FocusState var focused: Bool
 	
 	var body: some View {
 		VStack {
-			TextField("Station", text: $station)
-				.focused($focused)
+			TextField("Station Number", text: $station)
+				.onSubmit { triggerEvent(StationSelectedEvent(station: station)) }
 			Spacer()
-			Button("Go") {}
-				.foregroundStyle(.green)
-				.visiblyDisabled(station.isEmpty)
 		}
+		.navigationTitle("Select Stop")
 	}
 }
 

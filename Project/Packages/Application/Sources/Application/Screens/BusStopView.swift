@@ -2,6 +2,7 @@
 //  Created by Emilio Peláez on 10/5/23.
 //
 
+import HierarchyResponder
 import Model
 import SharedUI
 import SwiftUI
@@ -16,8 +17,7 @@ struct BusStopView: View {
 				Image(systemName: "bus.fill")
 				Text(stopName)
 					.extendHorizontally(alignment: .leading)
-				Button { //refresh
-				} label: {
+				EventButton(RefreshRequestedEvent()) {
 					Image(systemName: "arrow.counterclockwise")
 						.symbolVariant(.circle)
 						.font(.title3)
@@ -35,6 +35,8 @@ struct BusStopView: View {
 			}
 		}
 		.scrollable(!buses.isEmpty)
+		.navigationTitle("Stop")
+		.navigationBarTitleDisplayMode(.inline)
 	}
 }
 
