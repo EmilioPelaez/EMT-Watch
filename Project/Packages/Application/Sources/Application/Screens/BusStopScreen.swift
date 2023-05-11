@@ -8,14 +8,22 @@ import SharedUI
 import SwiftUI
 
 struct BusStopScreen: View {
-	let stopName: String
-	let buses: [Bus]
+	@Environment(\.buses) var buses
+	
+	let stop: Stop
+	
+	var scrollable: Bool {
+		switch buses {
+		case .value(let buses) where !buses.isEmpty: return true
+		case _: return false
+		}
+	}
 	
 	var body: some View {
 		VStack {
 			HStack {
 				Image(systemName: "bus.fill")
-				Text(stopName)
+				Text(stop.name)
 					.extendHorizontally(alignment: .leading)
 				EventButton(RefreshRequestedEvent()) {
 					Image(systemName: "arrow.counterclockwise")
@@ -27,20 +35,23 @@ struct BusStopScreen: View {
 			.font(.caption2)
 			.extendHorizontally(alignment: .leading)
 			Divider()
-			if buses.isEmpty {
-				EmptyBusesView()
-					.extendVertically()
-			} else {
+			switch buses {
+			case .value(let buses) where !buses.isEmpty:
 				BusListView(buses: buses)
+			case _:
+				MessageScreen(state: buses)
+					.extendVertically()
 			}
 		}
-		.scrollable(!buses.isEmpty)
+		.scrollable(scrollable)
 	}
 }
 
 struct BusStopScreen_Previews: PreviewProvider {
 	static var previews: some View {
-		BusStopScreen(stopName: "729", buses: .example)
-		BusStopScreen(stopName: "729", buses: [])
+		BusStopScreen(stop: .example)
+			.environment(\.buses, .value(.example))
+		BusStopScreen(stop: .example)
+			.environment(\.buses, .failure)
 	}
 }

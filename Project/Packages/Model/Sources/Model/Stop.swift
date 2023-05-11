@@ -21,10 +21,29 @@ public struct Stop: Identifiable {
 	}
 }
 
+extension Stop: Hashable {
+	public func hash(into hasher: inout Hasher) {
+		hasher.combine(id)
+		hasher.combine(name)
+		hasher.combine(address)
+		hasher.combine(coordinate.latitude)
+		hasher.combine(coordinate.longitude)
+		hasher.combine(lines.hashValue)
+	}
+	
+	public static func == (lhs: Stop, rhs: Stop) -> Bool {
+		lhs.id == rhs.id
+	}
+}
+
 public extension Stop {
 	static let example = Stop(id: "729",
 														name: "Ruzafa",
 														address: "REINO DE VALENCIA",
 														coordinate: CLLocationCoordinate2D(latitude: 39.470022, longitude: -0.376823),
 														lines: [.example, .example, .example])
+}
+
+public extension Array<Stop> {
+	static let example = [Stop.example]
 }

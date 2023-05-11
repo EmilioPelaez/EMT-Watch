@@ -43,10 +43,6 @@ struct StopInfoScreen: View {
 					.frame(height: 100)
 					.listRowInsets(EdgeInsets())
 					.clipShape(RoundedRectangle(cornerRadius: 10))
-			Button {
-			} label: {
-				Image(systemName: "star")
-			}
 		}
 	}
 }

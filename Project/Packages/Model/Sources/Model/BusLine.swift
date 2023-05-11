@@ -4,7 +4,7 @@
 
 import Foundation
 
-public struct Line: Identifiable {
+public struct Line: Identifiable, Hashable {
 	public var id: String { lineNumber + destination }
 	
 	public let lineNumber: String
