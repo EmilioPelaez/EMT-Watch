@@ -10,7 +10,7 @@ struct BusStopRouter: View {
 	
 	var body: some View {
 		NavigationStack(path: $route) {
-			StopSearchView()
+			StopListView()
 				.navigationDestination(for: BusStopStep.self) { step in
 					switch step {
 					case .station(let station):
