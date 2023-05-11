@@ -44,14 +44,20 @@ struct BusStopScreen: View {
 			}
 		}
 		.scrollable(scrollable)
+		.navigationTitle("Buses")
+		.navigationBarTitleDisplayMode(.inline)
 	}
 }
 
 struct BusStopScreen_Previews: PreviewProvider {
 	static var previews: some View {
-		BusStopScreen(stop: .example)
-			.environment(\.buses, .value(.example))
-		BusStopScreen(stop: .example)
-			.environment(\.buses, .failure)
+		NavigationStack {
+			BusStopScreen(stop: .example)
+				.environment(\.buses, .value(.example))
+		}
+		NavigationStack {
+			BusStopScreen(stop: .example)
+				.environment(\.buses, .failure)
+		}
 	}
 }

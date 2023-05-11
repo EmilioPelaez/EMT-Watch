@@ -2,6 +2,7 @@
 //  Created by Emilio Peláez on 10/5/23.
 //
 
+import HierarchyResponder
 import Model
 import SharedUI
 import SwiftUI
@@ -36,12 +37,16 @@ extension StopListScreen {
 			List {
 				Section("Favorites") {
 					ForEach(favorites) { stop in
-						StopRow(stop: stop, isFavorite: true)
+						EventButton(StopSelectedEvent(stop: stop)) {
+							StopRow(stop: stop, isFavorite: true)
+						}
 					}
 				}
 				Section("Nearby") {
 					ForEach(nearby) { stop in
-						StopRow(stop: stop, isFavorite: false)
+						EventButton(StopSelectedEvent(stop: stop)) {
+							StopRow(stop: stop, isFavorite: false)
+						}
 					}
 				}
 				Section("By Station Number") {

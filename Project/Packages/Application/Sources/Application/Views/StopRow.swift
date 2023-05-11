@@ -2,6 +2,7 @@
 //  Created by Emilio Peláez on 11/5/23.
 //
 
+import HierarchyResponder
 import Model
 import SharedUI
 import SwiftUI
@@ -27,17 +28,12 @@ struct StopRow: View {
 		.extendHorizontally(alignment: .leading)
 		.mediumPadding(.vertical)
 		.swipeActions(edge: .trailing, allowsFullSwipe: false) {
-			Button {
-			} label: {
+			EventButton(StopInfoEvent(stop: stop)) {
 				Image(systemName: "info.circle")
 			}
-			Button {
-			} label: {
+			EventButton(StopInfoEvent(stop: stop)) {
 				Image(systemName: "star")
 			}
-		}
-		.onTapGesture {
-			triggerEvent(StationSelectedEvent(station: stop.id))
 		}
 	}
 }

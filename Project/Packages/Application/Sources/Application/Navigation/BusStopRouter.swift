@@ -12,16 +12,18 @@ struct BusStopRouter: View {
 	var body: some View {
 		NavigationStack(path: $route) {
 			StopListScreen()
-//				.navigationDestination(for: BusStopStep.self) { step in
-//					switch step {
-//					case .schedule(let stop):
-//						BusStopScreen(stop: stop, buses: .example)
-//					case .info(let stop):
-//						StopInfoScreen(stop: .example)
-//					}
-//				}
+				.navigationDestination(for: BusStopStep.self) { step in
+					switch step {
+					case .schedule(let stop):
+						BusStopScreen(stop: stop)
+							.environment(\.buses, .value(.example))
+					case .info(let stop):
+						StopInfoScreen(stop: stop)
+					}
+				}
 		}
-//		.handleEvent(StationSelectedEvent.self) { route.append(.schedule($0.station)) }
+		.handleEvent(StopSelectedEvent.self) { route.append(.schedule($0.stop)) }
+		.handleEvent(StopInfoEvent.self) { route.append(.info($0.stop)) }
 	}
 }
 

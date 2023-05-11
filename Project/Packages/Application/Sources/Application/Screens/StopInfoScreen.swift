@@ -44,11 +44,15 @@ struct StopInfoScreen: View {
 					.listRowInsets(EdgeInsets())
 					.clipShape(RoundedRectangle(cornerRadius: 10))
 		}
+		.navigationTitle("Details")
+		.navigationBarTitleDisplayMode(.inline)
 	}
 }
 
 struct StopInfoScreen_Previews: PreviewProvider {
 	static var previews: some View {
-		StopInfoScreen(stop: .example)
+		NavigationStack {
+			StopInfoScreen(stop: .example)
+		}
 	}
 }
