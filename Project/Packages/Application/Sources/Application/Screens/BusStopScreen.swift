@@ -7,7 +7,7 @@ import Model
 import SharedUI
 import SwiftUI
 
-struct BusStopView: View {
+struct BusStopScreen: View {
 	let stopName: String
 	let buses: [Bus]
 	
@@ -38,9 +38,9 @@ struct BusStopView: View {
 	}
 }
 
-struct BusStopView_Previews: PreviewProvider {
+struct BusStopScreen_Previews: PreviewProvider {
 	static var previews: some View {
-		BusStopView(stopName: "729", buses: .example)
-		BusStopView(stopName: "729", buses: [])
+		BusStopScreen(stopName: "729", buses: .example)
+		BusStopScreen(stopName: "729", buses: [])
 	}
 }

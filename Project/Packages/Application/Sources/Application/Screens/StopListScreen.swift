@@ -5,7 +5,7 @@
 import SharedUI
 import SwiftUI
 
-struct StopListView: View {
+struct StopListScreen: View {
 	@Environment(\.triggerEvent) var triggerEvent
 	
 	@State var stationNumber: String = ""
@@ -30,8 +30,8 @@ struct StopListView: View {
 	}
 }
 
-struct StopListView_Previews: PreviewProvider {
+struct StopListScreen_Previews: PreviewProvider {
 	static var previews: some View {
-		StopListView()
+		StopListScreen()
 	}
 }

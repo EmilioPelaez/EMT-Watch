@@ -10,20 +10,23 @@ struct BusStopRouter: View {
 	
 	var body: some View {
 		NavigationStack(path: $route) {
-			StopListView()
+			StopListScreen()
 				.navigationDestination(for: BusStopStep.self) { step in
 					switch step {
-					case .station(let station):
-						BusStopView(stopName: station, buses: .example)
+					case .schedule(let stop):
+						BusStopScreen(stopName: stop, buses: .example)
+					case .info(let stop):
+						StopInfoScreen(stop: .example)
 					}
 				}
 		}
-		.handleEvent(StationSelectedEvent.self) { route.append(.station($0.station)) }
+		.handleEvent(StationSelectedEvent.self) { route.append(.schedule($0.station)) }
 	}
 }
 
 enum BusStopStep: Hashable {
-	case station(String)
+	case schedule(String)
+	case info(String)
 }
 
 struct BusStopRouter_Previews: PreviewProvider {
