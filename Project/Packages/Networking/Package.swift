@@ -13,12 +13,18 @@ let package = Package(
 	],
 	dependencies: [
 		.package(path: "../Shared"),
+		.package(path: "../Model"),
+		.package(url: "https://github.com/EmilioPelaez/HierarchyResponder", from: .init(1, 0, 0)),
+		.package(url: "https://github.com/EmilioPelaez/Monarch", branch: "main"),
 	],
 	targets: [
 		.target(
 			name: "Networking",
 			dependencies: [
 				"Shared",
+				"Model",
+				"HierarchyResponder",
+				"Monarch",
 			]),
 		.testTarget(
 			name: "NetworkingTests",

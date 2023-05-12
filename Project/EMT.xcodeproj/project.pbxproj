@@ -39,6 +39,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C8470AAB2A0DBB4A00DDE59F /* Monarch */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Monarch; path = ../../../Frameworks/Monarch; sourceTree = "<group>"; };
 		C86A794D2A0AF69E0048D834 /* Shared */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Shared; path = Packages/Shared; sourceTree = "<group>"; };
 		C86A794E2A0AF6AB0048D834 /* SharedUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SharedUI; path = Packages/SharedUI; sourceTree = "<group>"; };
 		C86A794F2A0AF7710048D834 /* HierarchyResponder */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = HierarchyResponder; path = ../../../Frameworks/HierarchyResponder; sourceTree = "<group>"; };
@@ -110,6 +111,7 @@
 				C86A79502A0AFC650048D834 /* Model */,
 				C8B717362A0AF44E0041D53D /* Networking */,
 				C86A794F2A0AF7710048D834 /* HierarchyResponder */,
+				C8470AAB2A0DBB4A00DDE59F /* Monarch */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
