@@ -12,6 +12,7 @@ struct BusStopRouter: View {
 	var body: some View {
 		NavigationStack(path: $route) {
 			StopListScreen()
+				.environment(\.stops, .value(.example))
 				.navigationDestination(for: BusStopStep.self) { step in
 					switch step {
 					case .schedule(let stop):
