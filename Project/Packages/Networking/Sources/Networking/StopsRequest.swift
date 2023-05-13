@@ -4,14 +4,16 @@
 
 import Monarch
 
-struct StopsRequest: Request {
-	var path: String
+public struct StopsRequest: Request {
+	public var path: String = ""
 	
-	var preview: Response = .init()
+	public var preview: Response = .init()
+	
+	public init() {}
 }
 
 extension StopsRequest {
-	struct Response: Decodable {
+	public struct Response: Decodable {
 		
 	}
 }

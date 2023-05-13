@@ -3,7 +3,21 @@
 //
 
 import Foundation
+import Monarch
 
-struct BusesRequest {
+public struct BusesRequest: Request {
 	let stopId: String
+	
+	public var path: String = ""
+	public var preview: Response = .init()
+	
+	public init(stopId: String) {
+		self.stopId = stopId
+	}
+}
+
+extension BusesRequest {
+	public struct Response: Decodable {
+		
+	}
 }

@@ -12,12 +12,12 @@ struct BusStopRouter: View {
 	var body: some View {
 		NavigationStack(path: $route) {
 			StopListScreen()
-				.environment(\.stops, .value(.example))
+				.stopsProvider()
 				.navigationDestination(for: BusStopStep.self) { step in
 					switch step {
 					case .schedule(let stop):
 						BusStopScreen(stop: stop)
-							.environment(\.buses, .value(.example))
+							.busesProvider(for: stop)
 					case .info(let stop):
 						StopInfoScreen(stop: stop)
 					}
