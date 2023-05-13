@@ -3,6 +3,8 @@
 //
 
 import Model
+import Monarch
+import Networking
 import HierarchyResponder
 import SwiftUI
 
@@ -25,6 +27,7 @@ struct BusStopRouter: View {
 		}
 		.handleEvent(StopSelectedEvent.self) { route.append(.schedule($0.stop)) }
 		.handleEvent(StopInfoEvent.self) { route.append(.info($0.stop)) }
+		.registerProvider(EMTClient())
 	}
 }
 

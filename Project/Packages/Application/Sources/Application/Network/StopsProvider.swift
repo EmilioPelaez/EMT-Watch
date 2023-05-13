@@ -8,6 +8,8 @@ import Networking
 import SwiftUI
 
 struct StopsProvider: ViewModifier {
+	@Environment(\.reportError) var reportError
+	
 	@State var stops: DataState<[Stop]> = .uninitialized
 	
 	func body(content: Content) -> some View {
@@ -16,9 +18,11 @@ struct StopsProvider: ViewModifier {
 				stops = .loading
 				do {
 					let response = try await monarch.perform(StopsRequest())
+					print(response)
 					stops = .value([])
 				} catch {
 					stops = .failure
+					reportError(error)
 				}
 			}
 			.environment(\.stops, stops)

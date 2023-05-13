@@ -8,6 +8,8 @@ import Networking
 import SwiftUI
 
 struct BusesProvider: ViewModifier {
+	@Environment(\.reportError) var reportError
+	
 	let stop: Stop
 	
 	@State var buses: DataState<[Bus]> = .uninitialized
@@ -21,6 +23,7 @@ struct BusesProvider: ViewModifier {
 					buses = .value([])
 				} catch {
 					buses = .failure
+					reportError(error)
 				}
 			}
 			.environment(\.buses, buses)
