@@ -8,9 +8,12 @@ import Monarch
 public struct BusesRequest: Request {
 	let stopId: String
 	
-	public var path: String = "https://www.emtvalencia.es/EMT/mapfunctions/MapUtilsPetitions.php?sec=getSAE&idioma=en&adaptados=false"
+	public var path: String = "EMT/mapfunctions/MapUtilsPetitions.php"
 	public var query: [String: Any] {
-		["parada": stopId]
+		["parada": stopId,
+		 "sec":"getSAE",
+		 "idioma":"en",
+		 "adaptados":false]
 	}
 	public var preview: Response = .init()
 	

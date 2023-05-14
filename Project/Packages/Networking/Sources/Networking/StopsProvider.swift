@@ -17,7 +17,7 @@ struct StopsProvider: ViewModifier {
 				stops = .loading
 				do {
 					let response = try await monarch.perform(StopsRequest())
-					stops = .value(response.stop.map(\.stop).filter { $0.lines.count > 4 })
+					stops = .value(response.stop.map(\.stop))
 				} catch {
 					stops = .failure
 					reportError(error)

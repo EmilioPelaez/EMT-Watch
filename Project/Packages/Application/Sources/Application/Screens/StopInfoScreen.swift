@@ -25,8 +25,10 @@ struct StopInfoScreen: View {
 				Label(stop.address, systemImage: "mappin.circle")
 					.font(.caption2.smallCaps())
 					.foregroundColor(.secondary)
-				FlowLayout(stop.lines, spacing: .paddingTiny) { line in
-					LineBadge(name: line.lineNumber)
+				FlowLayout(alignment: .topLeading, spacing: .paddingTiny) {
+					ForEach(stop.lines) { line in
+						LineBadge(name: line.lineNumber)
+					}
 				}
 			}
 			.extendHorizontally(alignment: .leading)

@@ -15,10 +15,14 @@ public class EMTClient: NetworkProvider {
 	
 	public init() {}
 	
+	public func configureURLRequest(_ urlRequest: inout URLRequest) throws {
+		urlRequest.addValue("EMTValencia/4.0 (iPhone; iOS 16.4.1; Scale/3.00)", forHTTPHeaderField: "User-Agent")
+	}
+	
 	public func validate(data: Data, response: URLResponse) throws {
+		print(String(data: data, encoding: .utf8))
 		if let response = response as? HTTPURLResponse, !(200 ..< 300).contains(response.statusCode) {
 			throw HTTPError(code: response.statusCode)
 		}
-//		print(String(data: data, encoding: .utf8))
 	}
 }

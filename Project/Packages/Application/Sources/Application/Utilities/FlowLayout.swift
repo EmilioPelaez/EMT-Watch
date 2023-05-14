@@ -5,69 +5,129 @@
 import SwiftUI
 
 //	Implementation from https://blog.logrocket.com/implementing-tags-swiftui/
-struct FlowLayout<Data, RowContent>: View where Data: RandomAccessCollection, RowContent: View, Data.Element: Identifiable, Data.Element: Hashable {
-	@State private var height: CGFloat = .zero
+@available(iOS 16.0, watchOS 9.0, *)
+struct FlowLayout: Layout {
+	var alignment: Alignment = .center
+	var spacing: CGFloat?
 
-	private var data: Data
-	private var spacing: CGFloat
-	private var rowContent: (Data.Element) -> RowContent
-
-	public init(_ data: Data, spacing: CGFloat = 4, @ViewBuilder rowContent: @escaping (Data.Element) -> RowContent) {
-		self.data = data
-		self.spacing = spacing
-		self.rowContent = rowContent
+	func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout Void) -> CGSize {
+		let result = FlowResult(
+			in: proposal.replacingUnspecifiedDimensions().width,
+			subviews: subviews,
+			alignment: alignment,
+			spacing: spacing
+		)
+		return result.bounds
 	}
 
-	var body: some View {
-		GeometryReader { geometry in
-			content(in: geometry)
-				.background(viewHeight(for: $height))
+	func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout Void) {
+		let result = FlowResult(
+			in: proposal.replacingUnspecifiedDimensions().width,
+			subviews: subviews,
+			alignment: alignment,
+			spacing: spacing
+		)
+		for row in result.rows {
+			let rowXOffset = (bounds.width - row.frame.width) * alignment.horizontal.percent
+			for index in row.range {
+				let xPos = rowXOffset + row.frame.minX + row.xOffsets[index - row.range.lowerBound] + bounds.minX
+				let rowYAlignment = (row.frame.height - subviews[index].sizeThatFits(.unspecified).height) *
+				alignment.vertical.percent
+				let yPos = row.frame.minY + rowYAlignment + bounds.minY
+				subviews[index].place(at: CGPoint(x: xPos, y: yPos), anchor: .topLeading, proposal: .unspecified)
+			}
 		}
-		.frame(height: height)
 	}
 
-	private func content(in geometry: GeometryProxy) -> some View {
+	struct FlowResult {
 		var bounds = CGSize.zero
+		var rows = [Row]()
 
-		return ZStack {
-			ForEach(data) { item in
-				rowContent(item)
-					.padding(.all, spacing)
-					.alignmentGuide(VerticalAlignment.center) { dimension in
-						let result = bounds.height
+		struct Row {
+			var range: Range<Int>
+			var xOffsets: [Double]
+			var frame: CGRect
+		}
 
-						if let firstItem = data.first, item == firstItem {
-							bounds.height = 0
-						}
-						return result
-					}
-					.alignmentGuide(HorizontalAlignment.center) { dimension in
-						if abs(bounds.width - dimension.width) > geometry.size.width {
-							bounds.width = 0
-							bounds.height -= dimension.height
-						}
+		init(in maxPossibleWidth: Double, subviews: Subviews, alignment: Alignment, spacing: CGFloat?) {
+			var itemsInRow = 0
+			var remainingWidth = maxPossibleWidth.isFinite ? maxPossibleWidth : .greatestFiniteMagnitude
+			var rowMinY = 0.0
+			var rowHeight = 0.0
+			var xOffsets: [Double] = []
+			for (index, subview) in zip(subviews.indices, subviews) {
+				let idealSize = subview.sizeThatFits(.unspecified)
+				if index != 0 && widthInRow(index: index, idealWidth: idealSize.width) > remainingWidth {
+					// Finish the current row without this subview.
+					finalizeRow(index: max(index - 1, 0), idealSize: idealSize)
+				}
+				addToRow(index: index, idealSize: idealSize)
 
-						let result = bounds.width
+				if index == subviews.count - 1 {
+					// Finish this row; it's either full or we're on the last view anyway.
+					finalizeRow(index: index, idealSize: idealSize)
+				}
+			}
 
-						if let firstItem = data.first, item == firstItem {
-							bounds.width = 0
-						} else {
-							bounds.width -= dimension.width
-						}
-						return result
-					}
+			func spacingBefore(index: Int) -> Double {
+				guard itemsInRow > 0 else { return 0 }
+				return spacing ?? subviews[index - 1].spacing.distance(to: subviews[index].spacing, along: .horizontal)
+			}
+
+			func widthInRow(index: Int, idealWidth: Double) -> Double {
+				idealWidth + spacingBefore(index: index)
+			}
+
+			func addToRow(index: Int, idealSize: CGSize) {
+				let width = widthInRow(index: index, idealWidth: idealSize.width)
+
+				xOffsets.append(maxPossibleWidth - remainingWidth + spacingBefore(index: index))
+				// Allocate width to this item (and spacing).
+				remainingWidth -= width
+				// Ensure the row height is as tall as the tallest item.
+				rowHeight = max(rowHeight, idealSize.height)
+				// Can fit in this row, add it.
+				itemsInRow += 1
+			}
+
+			func finalizeRow(index: Int, idealSize: CGSize) {
+				let rowWidth = maxPossibleWidth - remainingWidth
+				rows.append(
+					Row(
+						range: index - max(itemsInRow - 1, 0) ..< index + 1,
+						xOffsets: xOffsets,
+						frame: CGRect(x: 0, y: rowMinY, width: rowWidth, height: rowHeight)
+					)
+				)
+				bounds.width = max(bounds.width, rowWidth)
+				let ySpacing = spacing ?? ViewSpacing().distance(to: ViewSpacing(), along: .vertical)
+				bounds.height += rowHeight + (rows.count > 1 ? ySpacing : 0)
+				rowMinY += rowHeight + ySpacing
+				itemsInRow = 0
+				rowHeight = 0
+				xOffsets.removeAll()
+				remainingWidth = maxPossibleWidth
 			}
 		}
 	}
+}
 
-	private func viewHeight(for binding: Binding<CGFloat>) -> some View {
-		GeometryReader { geometry -> Color in
-			let rect = geometry.frame(in: .local)
+private extension HorizontalAlignment {
+	var percent: Double {
+		switch self {
+			case .leading: return 0
+			case .trailing: return 1
+			default: return 0.5
+		}
+	}
+}
 
-			DispatchQueue.main.async {
-				binding.wrappedValue = rect.size.height
-			}
-			return .clear
+private extension VerticalAlignment {
+	var percent: Double {
+		switch self {
+			case .top: return 0
+			case .bottom: return 1
+			default: return 0.5
 		}
 	}
 }
