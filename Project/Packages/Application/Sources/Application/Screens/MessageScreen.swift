@@ -17,7 +17,7 @@ struct MessageScreen<T>: View {
 		case .loading:
 			ProgressView()
 		case .value:
-			Image(systemName: "checkmark.seal.fill")
+			Image(systemName: "nosign.app")
 				.font(.system(size: 50))
 				.foregroundColor(.primary)
 		case .failure:

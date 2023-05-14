@@ -44,8 +44,14 @@ extension BusesRequest {
 			struct Bus: Decodable {
 				let linea: String
 				let destino: String
-				let minutos: String
-				let horaLlegada: String
+				let minutos: String?
+				let horaLlegada: String?
+				
+				var isValid: Bool {
+					!linea.isEmpty
+					&& !destino.isEmpty
+					&& !(minutos ?? horaLlegada ?? "").isEmpty
+				}
 			}
 		}
 	}
@@ -54,9 +60,9 @@ extension BusesRequest {
 extension BusesRequest.Response.Parada.Bus {
 	var bus: Model.Bus {
 		let eta: Model.Bus.ETA = {
-			if !minutos.isEmpty {
+			if let minutos, !minutos.isEmpty {
 				return Bus.ETA(minutos)
-			} else if !horaLlegada.isEmpty {
+			} else if let horaLlegada, !horaLlegada.isEmpty {
 				return Bus.ETA(horaLlegada)
 			} else {
 				return Bus.ETA.unknown

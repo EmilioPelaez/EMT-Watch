@@ -27,7 +27,7 @@ struct BusesProvider: ViewModifier {
 			buses = .loading
 			do {
 				let response = try await monarch.perform(BusesRequest(stopId: stop.id))
-				buses = .value(response.parada.bus.map(\.bus))
+				buses = .value(response.parada.bus.filter(\.isValid).map(\.bus))
 			} catch {
 				buses = .failure
 				reportError(error)

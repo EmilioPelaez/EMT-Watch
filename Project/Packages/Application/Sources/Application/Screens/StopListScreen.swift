@@ -39,9 +39,13 @@ extension StopListScreen {
 		var body: some View {
 			List {
 				Section("Favorites") {
-					ForEach(favorites) { stop in
-						EventButton(StopSelectedEvent(stop: stop)) {
-							StopRow(stop: stop, isFavorite: true)
+					if favorites.isEmpty {
+						Label("Swipe left on a bus stop to mark as a favorite.", systemImage: "info.circle")
+					} else {
+						ForEach(favorites) { stop in
+							EventButton(StopSelectedEvent(stop: stop)) {
+								StopRow(stop: stop, isFavorite: true)
+							}
 						}
 					}
 				}

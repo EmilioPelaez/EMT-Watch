@@ -17,7 +17,6 @@ enum BusStopSorter {
 		let nearbyStops = stops
 			.sorted { location.distance(from: $0.coordinate) < location.distance(from: $1.coordinate) }
 			.filter { location.distance(from: $0.coordinate) < 500 }
-			.prefix(5)
 		return (favoriteStops, Array(nearbyStops), stops)
 	}
 }
