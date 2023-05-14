@@ -45,6 +45,7 @@ extension BusesRequest {
 				let linea: String
 				let destino: String
 				let minutos: String
+				let horaLlegada: String
 			}
 		}
 	}
@@ -52,7 +53,16 @@ extension BusesRequest {
 
 extension BusesRequest.Response.Parada.Bus {
 	var bus: Model.Bus {
-		.init(linea: linea, destination: destino, eta: .init(minutos))
+		let eta: Model.Bus.ETA = {
+			if !minutos.isEmpty {
+				return Bus.ETA(minutos)
+			} else if !horaLlegada.isEmpty {
+				return Bus.ETA(horaLlegada)
+			} else {
+				return Bus.ETA.unknown
+			}
+		}()
+		return Model.Bus(linea: linea, destination: destino, eta: eta)
 	}
 }
 
@@ -60,11 +70,16 @@ extension Bus.ETA {
 	init(_ string: String) {
 		if string == "Next" {
 			self = .next
-		} else if let trimmed = string.replacingOccurrences(of: " min.", with: "") as? String,
-							let value = Int(trimmed) {
-			self = .minutes(value)
+		} else if string.contains(" min.") {
+			let trimmed = string.replacingOccurrences(of: " min.", with: "")
+			if let value = Int(trimmed) {
+				self = .minutes(value)
+			} else {
+				self = .unknown
+			}
+		} else if string.contains(":") {
+			self = .time(string)
 		} else {
-			print("Invalid \(string)")
 			self = .unknown
 		}
 	}

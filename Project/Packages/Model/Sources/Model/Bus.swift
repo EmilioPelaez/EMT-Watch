@@ -8,6 +8,7 @@ public struct Bus: Identifiable {
 	public enum ETA {
 		case next
 		case minutes(Int)
+		case time(String)
 		case unknown
 	}
 	
@@ -44,6 +45,7 @@ extension Bus.ETA: CustomStringConvertible {
 		switch self {
 		case .next: return "now"
 		case .minutes(let int): return "\(int) min"
+		case .time(let time): return time
 		case .unknown: return "??"
 		}
 	}
@@ -52,8 +54,9 @@ extension Bus.ETA: CustomStringConvertible {
 extension Bus.ETA: Comparable {
 	public static func <(lhs: Bus.ETA, rhs: Bus.ETA) -> Bool {
 		switch (lhs, rhs) {
-		case (.next, _), (_, .unknown): return true
-		case (_, .next), (.unknown, _): return false
+		case (.next, _), (_, .unknown), (.minutes, .time): return true
+		case (_, .next), (.unknown, _), (.time, .minutes): return false
+		case(.time, .time): return true
 		case (.minutes(let ml), .minutes(let mr)): return ml < mr
 		}
 	}

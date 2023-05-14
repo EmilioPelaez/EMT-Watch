@@ -17,6 +17,9 @@ struct BusETAView: View {
 			case .minutes(let minutes):
 				Text("\(minutes) min")
 					.foregroundColor(minutes <= 5 ? .green : .primary)
+			case .time(let time):
+				Text(time)
+					.foregroundColor(.primary)
 			case .unknown:
 				Text("??")
 					.foregroundColor(.red)

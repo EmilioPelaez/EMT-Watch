@@ -12,6 +12,14 @@ import SwiftUI
 struct BusStopRouter: View {
 	@State var route: [BusStopStep] = []
 	
+	var isSimulator: Bool {
+#if targetEnvironment(simulator)
+	true
+#else
+	false
+#endif
+	}
+	
 	var body: some View {
 		NavigationStack(path: $route) {
 			StopListScreen()
@@ -29,9 +37,12 @@ struct BusStopRouter: View {
 		.handleEvent(StopSelectedEvent.self) { route.append(.schedule($0.stop)) }
 		.handleEvent(StopInfoEvent.self) { route.append(.info($0.stop)) }
 		.registerProvider(EMTClient())
+		.if(isSimulator) {
+			$0.locationDemoProvider(.init(latitude: 39.470022, longitude: -0.376823))
+		} else: {
+			$0.locationProvider()
+		}
 		.favoritesProvider()
-//		.locationProvider()
-		.locationDemoProvider(.init(latitude: 39.470022, longitude: -0.376823))
 	}
 }
 

@@ -23,8 +23,7 @@ struct BusStopScreen: View {
 	var body: some View {
 		VStack {
 			HStack {
-				Image(systemName: "bus.fill")
-				Text(stop.name)
+				Label(stop.name, systemImage: "bus.fill")
 					.extendHorizontally(alignment: .leading)
 				EventButton(RefreshEvent()) {
 					Image(systemName: "arrow.counterclockwise")
