@@ -23,11 +23,9 @@ struct FavoritesProvider: ViewModifier {
 		} else {
 			array.append(stop.id)
 		}
-		withAnimation {
-			favorites = array
-				.filter { !$0.isEmpty }
-				.joined(separator: ",")
-		}
+		favorites = array
+			.filter { !$0.isEmpty }
+			.joined(separator: ",")
 	}
 }
 

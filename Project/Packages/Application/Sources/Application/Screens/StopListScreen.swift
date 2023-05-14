@@ -29,6 +29,8 @@ struct StopListScreen: View {
 extension StopListScreen {
 	struct ContentView: View {
 		@Environment(\.triggerEvent) var triggerEvent
+		@Environment(\.favorites) var fav
+		@Environment(\.isFavorite) var isFavorite
 		
 		let favorites: [Stop]
 		let nearby: [Stop]
@@ -52,7 +54,7 @@ extension StopListScreen {
 				Section("Nearby") {
 					ForEach(nearby) { stop in
 						EventButton(StopSelectedEvent(stop: stop)) {
-							StopRow(stop: stop, isFavorite: false)
+							StopRow(stop: stop, isFavorite: isFavorite(stop))
 						}
 					}
 				}

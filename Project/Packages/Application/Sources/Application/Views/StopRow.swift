@@ -28,12 +28,12 @@ struct StopRow: View {
 		}
 		.extendHorizontally(alignment: .leading)
 		.mediumPadding(.vertical)
-		.swipeActions(edge: .trailing, allowsFullSwipe: false) {
+		.swipeActions(edge: .trailing, allowsFullSwipe: true) {
+			EventButton(FavoritedStopEvent(stop: stop)) {
+				Image(systemName: isFavorite ? "star.slash" : "star")
+			}
 			EventButton(StopInfoEvent(stop: stop)) {
 				Image(systemName: "info.circle")
-			}
-			EventButton(FavoritedStopEvent(stop: stop)) {
-				Image(systemName: "star")
 			}
 		}
 	}

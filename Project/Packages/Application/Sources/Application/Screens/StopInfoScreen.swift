@@ -32,6 +32,7 @@ struct StopInfoScreen: View {
 				Label(stop.address, systemImage: "mappin.circle")
 					.font(.caption2.smallCaps())
 					.foregroundColor(.secondary)
+				Divider()
 				FlowLayout(alignment: .topLeading, spacing: .paddingTiny) {
 					ForEach(stop.lines) { line in
 						LineBadge(name: line.lineNumber)
@@ -40,23 +41,23 @@ struct StopInfoScreen: View {
 			}
 			.extendHorizontally(alignment: .leading)
 			.mediumPadding(.vertical)
-			Map(coordinateRegion: $coordinate,
-					interactionModes: [],
-					showsUserLocation: true,
-					userTrackingMode: nil,
-					annotationItems: [stop]) { stop in
-				MapMarker(coordinate: stop.coordinate, tint: .red)
-			}
-					.frame(height: 100)
-					.listRowInsets(EdgeInsets())
-					.clipShape(RoundedRectangle(cornerRadius: 10))
-			EventButton(FavoritedStopEvent(stop: stop)) {
-				Label(isFavorite ? "Remove Favorite" : "Add Favorite",
-							systemImage: isFavorite ? "star.fill" : "star")
-			}
+			map
+				.aspectRatio(1.25, contentMode: .fill)
+				.listRowInsets(EdgeInsets())
+				.clipShape(RoundedRectangle(cornerRadius: 10))
 		}
 		.navigationTitle("Details")
 		.navigationBarTitleDisplayMode(.inline)
+	}
+	
+	var map: some View {
+		Map(coordinateRegion: $coordinate,
+				interactionModes: [],
+				showsUserLocation: true,
+				userTrackingMode: nil,
+				annotationItems: [stop]) { stop in
+			MapMarker(coordinate: stop.coordinate, tint: .red)
+		}
 	}
 }
 
