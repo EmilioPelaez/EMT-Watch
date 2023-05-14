@@ -4,6 +4,7 @@
 
 import HierarchyResponder
 import Model
+import Networking
 import SharedUI
 import SwiftUI
 
@@ -25,7 +26,7 @@ struct BusStopScreen: View {
 				Image(systemName: "bus.fill")
 				Text(stop.name)
 					.extendHorizontally(alignment: .leading)
-				EventButton(RefreshRequestedEvent()) {
+				EventButton(RefreshEvent()) {
 					Image(systemName: "arrow.counterclockwise")
 						.symbolVariant(.circle)
 						.font(.title3)

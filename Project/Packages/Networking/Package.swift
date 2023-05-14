@@ -16,6 +16,7 @@ let package = Package(
 		.package(path: "../Model"),
 		.package(url: "https://github.com/EmilioPelaez/HierarchyResponder", from: .init(1, 0, 0)),
 		.package(url: "https://github.com/EmilioPelaez/Monarch", branch: "main"),
+		.package(url: "https://github.com/CoreOffice/XMLCoder", from: .init(0, 0, 0)),
 	],
 	targets: [
 		.target(
@@ -25,6 +26,7 @@ let package = Package(
 				"Model",
 				"HierarchyResponder",
 				"Monarch",
+				"XMLCoder",
 			]),
 		.testTarget(
 			name: "NetworkingTests",

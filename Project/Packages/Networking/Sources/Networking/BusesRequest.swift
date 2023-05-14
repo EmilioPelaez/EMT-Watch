@@ -3,27 +3,69 @@
 //
 
 import Foundation
+import Model
 import Monarch
+import XMLCoder
 
-public struct BusesRequest: Request {
+struct BusesRequest: Request {
 	let stopId: String
 	
-	public var path: String = "EMT/mapfunctions/MapUtilsPetitions.php"
-	public var query: [String: Any] {
-		["parada": stopId,
-		 "sec":"getSAE",
-		 "idioma":"en",
-		 "adaptados":false]
+	var path: String = "EMT/mapfunctions/MapUtilsPetitions.php"
+	var query: [String: Any] {
+		[
+			"parada": stopId,
+		 "sec": "getSAE",
+		 "idioma": "en",
+		 "adaptados": false
+		]
 	}
-	public var preview: Response = .init()
+	var preview: Response = .init(parada: .init(bus: []))
 	
-	public init(stopId: String) {
+	init(stopId: String) {
 		self.stopId = stopId
+	}
+	
+	func decode(_ data: Data) throws -> Response {
+		try XMLDecoder().decode(Response.self, from: data)
 	}
 }
 
 extension BusesRequest {
-	public struct Response: Decodable {
+	struct Response: Decodable {
+		var parada: Parada
 		
+		enum CodingKeys: String, CodingKey {
+			case parada = "solo_parada"
+		}
+		
+		struct Parada: Decodable {
+			let bus: [Bus]
+			
+			struct Bus: Decodable {
+				let linea: String
+				let destino: String
+				let minutos: String
+			}
+		}
+	}
+}
+
+extension BusesRequest.Response.Parada.Bus {
+	var bus: Model.Bus {
+		.init(linea: linea, destination: destino, eta: .init(minutos))
+	}
+}
+
+extension Bus.ETA {
+	init(_ string: String) {
+		if string == "Next" {
+			self = .next
+		} else if let trimmed = string.replacingOccurrences(of: " min.", with: "") as? String,
+							let value = Int(trimmed) {
+			self = .minutes(value)
+		} else {
+			print("Invalid \(string)")
+			self = .unknown
+		}
 	}
 }

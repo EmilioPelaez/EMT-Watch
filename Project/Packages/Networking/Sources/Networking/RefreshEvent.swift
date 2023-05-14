@@ -4,4 +4,6 @@
 
 import HierarchyResponder
 
-struct RefreshRequestedEvent: Event {}
+public struct RefreshEvent: Event {
+	public init() {}
+}
