@@ -8,10 +8,12 @@ import Model
 
 enum BusStopSorter {
 	static func sort(_ stops: [Stop], favorites: [String], location: CLLocation?) -> (favorites: [Stop], nearby: [Stop], all: [Stop]) {
-		let favoriteStops = stops.filter { favorites.contains($0.id) }
+		var favoriteStops = stops
+			.filter { favorites.contains($0.id) }
 		guard let location else {
 			return (favoriteStops, [], stops)
 		}
+		favoriteStops.sort { location.distance(from: $0.coordinate) < location.distance(from: $1.coordinate) }
 		let nearbyStops = stops
 			.sorted { location.distance(from: $0.coordinate) < location.distance(from: $1.coordinate) }
 			.filter { location.distance(from: $0.coordinate) < 500 }

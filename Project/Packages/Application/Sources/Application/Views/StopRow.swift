@@ -32,7 +32,7 @@ struct StopRow: View {
 			EventButton(StopInfoEvent(stop: stop)) {
 				Image(systemName: "info.circle")
 			}
-			EventButton(StopInfoEvent(stop: stop)) {
+			EventButton(FavoritedStopEvent(stop: stop)) {
 				Image(systemName: "star")
 			}
 		}

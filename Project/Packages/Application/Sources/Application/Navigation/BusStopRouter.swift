@@ -29,6 +29,7 @@ struct BusStopRouter: View {
 		.handleEvent(StopSelectedEvent.self) { route.append(.schedule($0.stop)) }
 		.handleEvent(StopInfoEvent.self) { route.append(.info($0.stop)) }
 		.registerProvider(EMTClient())
+		.favoritesProvider()
 //		.locationProvider()
 		.locationDemoProvider(.init(latitude: 39.470022, longitude: -0.376823))
 	}

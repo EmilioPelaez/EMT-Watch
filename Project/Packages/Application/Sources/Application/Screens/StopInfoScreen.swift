@@ -2,15 +2,22 @@
 //  Created by Emilio Peláez on 11/5/23.
 //
 
+import HierarchyResponder
 import MapKit
 import Model
 import SharedUI
 import SwiftUI
 
 struct StopInfoScreen: View {
+	@Environment(\.favorites) var favorites
+	
 	let stop: Stop
 	
 	@State var coordinate: MKCoordinateRegion
+	
+	var isFavorite: Bool {
+		favorites.contains(stop.id)
+	}
 	
 	init(stop: Stop) {
 		self.stop = stop
@@ -43,6 +50,10 @@ struct StopInfoScreen: View {
 					.frame(height: 100)
 					.listRowInsets(EdgeInsets())
 					.clipShape(RoundedRectangle(cornerRadius: 10))
+			EventButton(FavoritedStopEvent(stop: stop)) {
+				Label(isFavorite ? "Remove Favorite" : "Add Favorite",
+							systemImage: isFavorite ? "star.fill" : "star")
+			}
 		}
 		.navigationTitle("Details")
 		.navigationBarTitleDisplayMode(.inline)
@@ -53,6 +64,10 @@ struct StopInfoScreen_Previews: PreviewProvider {
 	static var previews: some View {
 		NavigationStack {
 			StopInfoScreen(stop: .example)
+		}
+		NavigationStack {
+			StopInfoScreen(stop: .example)
+				.environment(\.favorites, [Stop.example.id])
 		}
 	}
 }
