@@ -14,7 +14,7 @@ struct LineBadge: View {
 			.overlay {
 				ZStack {
 					Circle()
-						.foregroundStyle(.red)
+						.foregroundStyle(.tint)
 					Text(name)
 						.font(.system(.callout, design: .rounded, weight: .medium))
 						.minimumScaleFactor(0.25)
