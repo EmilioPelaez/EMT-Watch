@@ -5,7 +5,4 @@
 import HierarchyResponder
 import Model
 
-struct StopSearchEvent: Event {
-	let searchTerm: String
-	let stops: [Stop]
-}
+struct StopSearchEvent: Event {}

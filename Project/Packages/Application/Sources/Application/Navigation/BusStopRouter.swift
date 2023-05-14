@@ -23,7 +23,6 @@ struct BusStopRouter: View {
 	var body: some View {
 		NavigationStack(path: $route) {
 			StopListScreen()
-				.stopsProvider()
 				.navigationDestination(for: BusStopStep.self) { step in
 					switch step {
 					case .schedule(let stop):
@@ -31,16 +30,17 @@ struct BusStopRouter: View {
 							.busesProvider(for: stop)
 					case .info(let stop):
 						StopInfoScreen(stop: stop)
-					case .search(let searchTerm, let stops):
-						SearchScreen(searchTerm: searchTerm, stops: stops)
+					case .search:
+						SearchScreen()
 					}
 				}
 		}
 		.handleEvent(StopSelectedEvent.self) { route.append(.schedule($0.stop)) }
 		.handleEvent(StopInfoEvent.self) { route.append(.info($0.stop)) }
 		.handleEvent(StopSearchEvent.self) {
-			route.append(.search($0.searchTerm, $0.stops))
+			route.append(.search)
 		}
+		.stopsProvider()
 		.registerProvider(EMTClient())
 		.if(isSimulator) {
 			$0.locationDemoProvider(.init(latitude: 39.470022, longitude: -0.376823))
@@ -54,7 +54,7 @@ struct BusStopRouter: View {
 enum BusStopStep: Hashable {
 	case schedule(Stop)
 	case info(Stop)
-	case search(String, [Stop])
+	case search
 }
 
 struct BusStopRouter_Previews: PreviewProvider {

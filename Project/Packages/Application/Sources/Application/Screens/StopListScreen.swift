@@ -52,19 +52,9 @@ extension StopListScreen {
 						}
 					}
 				}
-				//	This doesn't work for some reason
-//				Section("Search") {
-//					TextField("Name, Address or ID", text: $searchTerm)
-//						.onSubmit {
-//							triggerEvent(StopSearchEvent(searchTerm: searchTerm, stops: all))
-//						}
-//				}
-			}
-			.searchable(text: $searchTerm)
-			.autocorrectionDisabled(true)
-			.onChange(of: searchTerm) {
-				guard !$0.isEmpty else { return }
-				triggerEvent(StopSearchEvent(searchTerm: $0, stops: all))
+				EventButton(StopSearchEvent()) {
+					Label("Search", systemImage: "magnifyingglass")
+				}
 			}
 		}
 	}

@@ -7,11 +7,23 @@ import Model
 import SwiftUI
 
 struct SearchScreen: View {
-	let searchTerm: String
-	let stops: [Stop]
+	@Environment(\.stops) var stopsData
+	@State var searchTerm: String = ""
+	
+	var stops: [Stop] {
+		switch stopsData {
+		case .value(let stops): return stops
+		case _: return []
+		}
+	}
 	
 	var filtered: [Stop] {
-		stops.filter { $0.searchTerm.contains(searchTerm.lowercased()) }
+		let term = searchTerm.trimmingCharacters(in: .whitespaces)
+		if term.isEmpty {
+			return stops
+		} else {
+			return stops.filter { $0.searchTerm.contains(term.lowercased()) }
+		}
 	}
 	
 	var body: some View {
@@ -33,6 +45,8 @@ struct SearchScreen: View {
 				}
 			}
 		}
+		.searchable(text: $searchTerm)
+		.autocorrectionDisabled(true)
 		.navigationTitle("Search")
 		.navigationBarTitleDisplayMode(.inline)
 	}
@@ -40,6 +54,6 @@ struct SearchScreen: View {
 
 struct SearchScreen_Previews: PreviewProvider {
 	static var previews: some View {
-		SearchScreen(searchTerm: "Ruzafa", stops: .example)
+		SearchScreen()
 	}
 }
