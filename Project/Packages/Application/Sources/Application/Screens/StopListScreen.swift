@@ -10,12 +10,14 @@ import SwiftUI
 struct StopListScreen: View {
 	@Environment(\.stops) var stops
 	@Environment(\.favorites) var favorites
+	@Environment(\.location) var location
 	
 	var body: some View {
 		Group {
 			switch stops {
 			case .value(let stops):
-				ContentView(favorites: Array(stops.prefix(3)), nearby: Array(stops.dropFirst(3)))
+				let filtered = BusStopSorter.sort(stops, favorites: favorites, location: location)
+				ContentView(favorites: filtered.favorites, nearby: filtered.nearby, all: filtered.all)
 			case _:
 				MessageScreen(state: stops)
 			}
@@ -30,6 +32,7 @@ extension StopListScreen {
 		
 		let favorites: [Stop]
 		let nearby: [Stop]
+		let all: [Stop]
 		
 		@State var stationNumber: String = ""
 		

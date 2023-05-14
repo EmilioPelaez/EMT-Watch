@@ -2,6 +2,7 @@
 //  Created by Emilio Peláez on 10/5/23.
 //
 
+import Location
 import Model
 import Monarch
 import Networking
@@ -28,6 +29,8 @@ struct BusStopRouter: View {
 		.handleEvent(StopSelectedEvent.self) { route.append(.schedule($0.stop)) }
 		.handleEvent(StopInfoEvent.self) { route.append(.info($0.stop)) }
 		.registerProvider(EMTClient())
+//		.locationProvider()
+		.locationDemoProvider(.init(latitude: 39.470022, longitude: -0.376823))
 	}
 }
 

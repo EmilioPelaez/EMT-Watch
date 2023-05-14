@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C891F5232A10E16D005E71B9 /* Valencia.gpx in Resources */ = {isa = PBXBuildFile; fileRef = C891F5222A10E16D005E71B9 /* Valencia.gpx */; };
 		C8B7171D2A0AF1950041D53D /* EMT Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = C8B7171C2A0AF1950041D53D /* EMT Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C8B717222A0AF1950041D53D /* EMTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B717212A0AF1950041D53D /* EMTApp.swift */; };
 		C8B717262A0AF1960041D53D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8B717252A0AF1960041D53D /* Assets.xcassets */; };
@@ -44,6 +45,7 @@
 		C86A794E2A0AF6AB0048D834 /* SharedUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SharedUI; path = Packages/SharedUI; sourceTree = "<group>"; };
 		C86A794F2A0AF7710048D834 /* HierarchyResponder */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = HierarchyResponder; path = ../../../Frameworks/HierarchyResponder; sourceTree = "<group>"; };
 		C86A79502A0AFC650048D834 /* Model */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Model; path = Packages/Model; sourceTree = "<group>"; };
+		C891F5222A10E16D005E71B9 /* Valencia.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Valencia.gpx; sourceTree = "<group>"; };
 		C8B717162A0AF1950041D53D /* EMT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EMT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8B7171C2A0AF1950041D53D /* EMT Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EMT Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8B717212A0AF1950041D53D /* EMTApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EMTApp.swift; sourceTree = "<group>"; };
@@ -51,6 +53,7 @@
 		C8B717282A0AF1960041D53D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C8B717352A0AF43B0041D53D /* Application */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Application; path = Packages/Application; sourceTree = "<group>"; };
 		C8B717362A0AF44E0041D53D /* Networking */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Networking; path = Packages/Networking; sourceTree = "<group>"; };
+		C8FCC20F2A10DCBA003344B8 /* Location */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Location; path = Packages/Location; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +68,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C891F5212A10E154005E71B9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C8B717252A0AF1960041D53D /* Assets.xcassets */,
+				C891F5222A10E16D005E71B9 /* Valencia.gpx */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		C8B7170F2A0AF1950041D53D = {
 			isa = PBXGroup;
 			children = (
@@ -87,8 +99,8 @@
 		C8B717202A0AF1950041D53D /* EMT Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				C891F5212A10E154005E71B9 /* Resources */,
 				C8B717212A0AF1950041D53D /* EMTApp.swift */,
-				C8B717252A0AF1960041D53D /* Assets.xcassets */,
 				C8B717272A0AF1960041D53D /* Preview Content */,
 			);
 			path = "EMT Watch App";
@@ -109,6 +121,7 @@
 				C86A794E2A0AF6AB0048D834 /* SharedUI */,
 				C8B717352A0AF43B0041D53D /* Application */,
 				C86A79502A0AFC650048D834 /* Model */,
+				C8FCC20F2A10DCBA003344B8 /* Location */,
 				C8B717362A0AF44E0041D53D /* Networking */,
 				C86A794F2A0AF7710048D834 /* HierarchyResponder */,
 				C8470AAB2A0DBB4A00DDE59F /* Monarch */,
@@ -171,7 +184,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1410;
-				LastUpgradeCheck = 1410;
+				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					C8B717152A0AF1950041D53D = {
 						CreatedOnToolsVersion = 14.1;
@@ -214,6 +227,7 @@
 			files = (
 				C8B717292A0AF1960041D53D /* Preview Assets.xcassets in Resources */,
 				C8B717262A0AF1960041D53D /* Assets.xcassets in Resources */,
+				C891F5232A10E16D005E71B9 /* Valencia.gpx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +286,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -332,6 +347,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -364,6 +380,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = EMT;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "EMT Needs your location to display the closest bus stops.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -394,6 +411,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = EMT;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "EMT Needs your location to display the closest bus stops.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (

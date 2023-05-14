@@ -14,6 +14,7 @@ let package = Package(
 	dependencies: [
 		.package(path: "../Shared"),
 		.package(path: "../SharedUI"),
+		.package(path: "../Location"),
 		.package(path: "../Model"),
 		.package(path: "../Networking"),
 		.package(url: "https://github.com/EmilioPelaez/HierarchyResponder", from: .init(1, 0, 0)),
@@ -24,6 +25,7 @@ let package = Package(
 			dependencies: [
 				"Shared",
 				"SharedUI",
+				"Location",
 				"Model",
 				"Networking",
 				"HierarchyResponder",
