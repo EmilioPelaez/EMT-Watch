@@ -9,9 +9,13 @@ import SharedUI
 import SwiftUI
 
 struct BusStopScreen: View {
+	@Environment(\.triggerEvent) var triggerEvent
+	@Environment(\.scenePhase) var scenePhase
 	@Environment(\.buses) var buses
 	
 	let stop: Stop
+	
+	@State var lastRefresh: Date = .distantPast
 	
 	var scrollable: Bool {
 		switch buses {
@@ -46,6 +50,13 @@ struct BusStopScreen: View {
 		.scrollable(scrollable)
 		.navigationTitle("Buses")
 		.navigationBarTitleDisplayMode(.inline)
+		.onAppear { lastRefresh = .now }
+		.onChange(of: scenePhase) { phase in
+			guard phase == .active,
+						Date.now.timeIntervalSince(lastRefresh) > 30 else { return }
+			triggerEvent(RefreshEvent())
+			lastRefresh = .now
+		}
 	}
 }
 
