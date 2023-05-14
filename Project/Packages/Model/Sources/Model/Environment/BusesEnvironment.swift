@@ -2,7 +2,6 @@
 //  Created by Emilio Peláez on 11/5/23.
 //
 
-import Model
 import SwiftUI
 
 struct BusesKey: EnvironmentKey {
@@ -10,7 +9,7 @@ struct BusesKey: EnvironmentKey {
 }
 
 extension EnvironmentValues {
-	var buses: DataState<[Bus]> {
+	public var buses: DataState<[Bus]> {
 		get { self[BusesKey.self] }
 		set { self[BusesKey.self] = newValue }
 	}

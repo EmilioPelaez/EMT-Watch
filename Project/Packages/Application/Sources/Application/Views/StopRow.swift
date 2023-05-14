@@ -19,10 +19,8 @@ struct StopRow: View {
 				.font(.caption2)
 			+ Text(" " + stop.name)
 				.font(.caption)
-			HStack {
-				ForEach(stop.lines) { line in
-					LineBadge(name: line.lineNumber)
-				}
+			FlowLayout(stop.lines, spacing: .paddingTiny) { line in
+				LineBadge(name: line.lineNumber)
 			}
 		}
 		.extendHorizontally(alignment: .leading)

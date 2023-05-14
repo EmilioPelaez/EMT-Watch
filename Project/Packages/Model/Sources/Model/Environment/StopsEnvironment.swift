@@ -2,7 +2,6 @@
 //  Created by Emilio Peláez on 11/5/23.
 //
 
-import Model
 import SwiftUI
 
 struct StopsKey: EnvironmentKey {
@@ -10,7 +9,7 @@ struct StopsKey: EnvironmentKey {
 }
 
 extension EnvironmentValues {
-	var stops: DataState<[Stop]> {
+	public var stops: DataState<[Stop]> {
 		get { self[StopsKey.self] }
 		set { self[StopsKey.self] = newValue }
 	}

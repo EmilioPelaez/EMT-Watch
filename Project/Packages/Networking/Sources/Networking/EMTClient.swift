@@ -14,4 +14,11 @@ public class EMTClient: NetworkProvider {
 	}()
 	
 	public init() {}
+	
+	public func validate(data: Data, response: URLResponse) throws {
+		if let response = response as? HTTPURLResponse, !(200 ..< 300).contains(response.statusCode) {
+			throw HTTPError(code: response.statusCode)
+		}
+//		print(String(data: data, encoding: .utf8))
+	}
 }

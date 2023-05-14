@@ -2,6 +2,7 @@
 //  Created by Emilio Peláez on 12/5/23.
 //
 
+import Model
 import Monarch
 
 public struct StopsRequest: Request {
@@ -80,5 +81,21 @@ extension StopsRequest {
 				}
 			}
 		}
+	}
+}
+
+extension StopsRequest.Response.Stop {
+	var stop: Model.Stop {
+		.init(id: stopID,
+					name: name,
+					address: ubica,
+					coordinate: .init(latitude: Double(lat) ?? 0, longitude: Double(lon) ?? 0),
+					lines: routes.rtI.array.map(\.linea))
+	}
+}
+
+extension StopsRequest.Response.Stop.Route {
+	var linea: Line {
+		.init(lineNumber: idLinea, destination: headSign)
 	}
 }

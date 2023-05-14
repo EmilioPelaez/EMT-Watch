@@ -15,7 +15,7 @@ struct StopListScreen: View {
 		Group {
 			switch stops {
 			case .value(let stops):
-				ContentView(favorites: stops, nearby: stops)
+				ContentView(favorites: Array(stops.prefix(3)), nearby: Array(stops.dropFirst(3)))
 			case _:
 				MessageScreen(state: stops)
 			}

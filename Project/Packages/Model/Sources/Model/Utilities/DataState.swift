@@ -4,7 +4,7 @@
 
 import Foundation
 
-enum DataState<T> {
+public enum DataState<T> {
 	case uninitialized
 	case loading
 	case value(T)

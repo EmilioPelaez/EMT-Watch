@@ -4,7 +4,6 @@
 
 import Model
 import Monarch
-import Networking
 import SwiftUI
 
 struct StopsProvider: ViewModifier {
@@ -18,8 +17,7 @@ struct StopsProvider: ViewModifier {
 				stops = .loading
 				do {
 					let response = try await monarch.perform(StopsRequest())
-					print(response)
-					stops = .value([])
+					stops = .value(response.stop.map(\.stop).filter { $0.lines.count > 4 })
 				} catch {
 					stops = .failure
 					reportError(error)
@@ -29,7 +27,7 @@ struct StopsProvider: ViewModifier {
 	}
 }
 
-extension View {
+public extension View {
 	func stopsProvider() -> some View {
 		modifier(StopsProvider())
 	}
