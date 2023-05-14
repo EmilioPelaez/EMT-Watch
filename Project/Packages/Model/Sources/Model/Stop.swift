@@ -47,3 +47,9 @@ public extension Stop {
 public extension Array<Stop> {
 	static let example = [Stop.example]
 }
+
+public extension Stop {
+	var searchTerm: String {
+		[id, name, address].joined(separator: " ").lowercased()
+	}
+}
