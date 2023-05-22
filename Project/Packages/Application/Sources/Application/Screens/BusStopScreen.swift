@@ -43,7 +43,7 @@ struct BusStopScreen: View {
 			case .value(let buses) where !buses.isEmpty:
 				BusListView(buses: buses)
 			case _:
-				MessageScreen(state: buses)
+				StateMessageView(state: buses)
 					.extendVertically()
 			}
 		}
@@ -51,9 +51,8 @@ struct BusStopScreen: View {
 		.navigationTitle("Buses")
 		.navigationBarTitleDisplayMode(.inline)
 		.onAppear { lastRefresh = .now }
-		.onChange(of: scenePhase) { phase in
-			guard phase == .active,
-						Date.now.timeIntervalSince(lastRefresh) > 30 else { return }
+		.onChange(of: scenePhase, equals: .active) { _ in
+			guard Date.now.timeIntervalSince(lastRefresh) > 30 else { return }
 			triggerEvent(RefreshEvent())
 			lastRefresh = .now
 		}

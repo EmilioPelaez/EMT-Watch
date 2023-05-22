@@ -55,5 +55,6 @@ struct SearchScreen: View {
 struct SearchScreen_Previews: PreviewProvider {
 	static var previews: some View {
 		SearchScreen()
+			.environment(\.stops, .value(.example))
 	}
 }

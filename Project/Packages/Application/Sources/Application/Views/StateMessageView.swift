@@ -5,7 +5,7 @@
 import Model
 import SwiftUI
 
-struct MessageScreen<T>: View {
+struct StateMessageView<T>: View {
 	let state: DataState<T>
 	
 	var body: some View {
@@ -28,11 +28,11 @@ struct MessageScreen<T>: View {
 	}
 }
 
-struct MessageScreen_Previews: PreviewProvider {
+struct StateMessageView_Previews: PreviewProvider {
 	static var previews: some View {
-		MessageScreen(state: DataState<String>.uninitialized)
-		MessageScreen(state: DataState<String>.loading)
-		MessageScreen(state: DataState<String>.value(""))
-		MessageScreen(state: DataState<String>.failure)
+		StateMessageView(state: DataState<String>.uninitialized)
+		StateMessageView(state: DataState<String>.loading)
+		StateMessageView(state: DataState<String>.value(""))
+		StateMessageView(state: DataState<String>.failure)
 	}
 }

@@ -9,15 +9,9 @@ import SharedUI
 import SwiftUI
 
 struct StopInfoScreen: View {
-	@Environment(\.favorites) var favorites
-	
 	let stop: Stop
 	
 	@State var coordinate: MKCoordinateRegion
-	
-	var isFavorite: Bool {
-		favorites.contains(stop.id)
-	}
 	
 	init(stop: Stop) {
 		self.stop = stop
@@ -33,6 +27,9 @@ struct StopInfoScreen: View {
 					.font(.caption2.smallCaps())
 					.foregroundColor(.secondary)
 				Divider()
+				Text("Lines")
+					.font(.caption2.smallCaps())
+					.foregroundColor(.secondary)
 				FlowLayout(alignment: .topLeading, spacing: .paddingTiny) {
 					ForEach(stop.lines) { line in
 						LineBadge(name: line.lineNumber)
@@ -65,10 +62,6 @@ struct StopInfoScreen_Previews: PreviewProvider {
 	static var previews: some View {
 		NavigationStack {
 			StopInfoScreen(stop: .example)
-		}
-		NavigationStack {
-			StopInfoScreen(stop: .example)
-				.environment(\.favorites, [Stop.example.id])
 		}
 	}
 }

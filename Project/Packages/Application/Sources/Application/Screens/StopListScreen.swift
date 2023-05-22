@@ -19,7 +19,7 @@ struct StopListScreen: View {
 				let filtered = BusStopSorter.sort(stops, favorites: favorites, location: location)
 				ContentView(favorites: filtered.favorites, nearby: filtered.nearby, all: filtered.all)
 			case _:
-				MessageScreen(state: stops)
+				StateMessageView(state: stops)
 			}
 		}
 		.navigationTitle("Select Stop")
