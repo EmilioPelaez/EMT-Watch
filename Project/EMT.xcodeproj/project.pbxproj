@@ -53,6 +53,7 @@
 		C8B717282A0AF1960041D53D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C8B717352A0AF43B0041D53D /* Application */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Application; path = Packages/Application; sourceTree = "<group>"; };
 		C8B717362A0AF44E0041D53D /* Networking */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Networking; path = Packages/Networking; sourceTree = "<group>"; };
+		C8BA5D2D2A3126DA00AC74CD /* EMT Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "EMT Watch App.entitlements"; sourceTree = "<group>"; };
 		C8FCC20F2A10DCBA003344B8 /* Location */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Location; path = Packages/Location; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -99,6 +100,7 @@
 		C8B717202A0AF1950041D53D /* EMT Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				C8BA5D2D2A3126DA00AC74CD /* EMT Watch App.entitlements */,
 				C891F5212A10E154005E71B9 /* Resources */,
 				C8B717212A0AF1950041D53D /* EMTApp.swift */,
 				C8B717272A0AF1960041D53D /* Preview Content */,
@@ -373,6 +375,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "EMT Watch App/EMT Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EMT Watch App/Preview Content\"";
@@ -404,6 +407,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "EMT Watch App/EMT Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EMT Watch App/Preview Content\"";
