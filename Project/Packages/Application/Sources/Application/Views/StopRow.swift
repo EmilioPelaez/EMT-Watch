@@ -17,7 +17,7 @@ struct StopRow: View {
 		VStack(alignment: .leading) {
 			Text(Image(systemName: isFavorite ? "star.fill" : "bus.fill"))
 				.font(.caption2)
-			+ Text(" " + stop.name)
+				+ Text(" " + stop.name)
 				.font(.caption)
 			Divider()
 			FlowLayout(alignment: .topLeading, spacing: .paddingSmall) {

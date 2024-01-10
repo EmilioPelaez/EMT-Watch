@@ -9,7 +9,8 @@ let package = Package(
 	products: [
 		.library(
 			name: "Application",
-			targets: ["Application"]),
+			targets: ["Application"]
+		),
 	],
 	dependencies: [
 		.package(path: "../Shared"),
@@ -29,9 +30,11 @@ let package = Package(
 				"Model",
 				"Networking",
 				"HierarchyResponder",
-			]),
+			]
+		),
 		.testTarget(
 			name: "ApplicationTests",
-			dependencies: ["Application"]),
+			dependencies: ["Application"]
+		),
 	]
 )

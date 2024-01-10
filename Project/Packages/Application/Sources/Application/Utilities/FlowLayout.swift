@@ -10,7 +10,7 @@ struct FlowLayout: Layout {
 	var alignment: Alignment = .center
 	var spacing: CGFloat?
 
-	func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout Void) -> CGSize {
+	func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache _: inout Void) -> CGSize {
 		let result = FlowResult(
 			in: proposal.replacingUnspecifiedDimensions().width,
 			subviews: subviews,
@@ -20,7 +20,7 @@ struct FlowLayout: Layout {
 		return result.bounds
 	}
 
-	func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout Void) {
+	func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache _: inout Void) {
 		let result = FlowResult(
 			in: proposal.replacingUnspecifiedDimensions().width,
 			subviews: subviews,
@@ -32,7 +32,7 @@ struct FlowLayout: Layout {
 			for index in row.range {
 				let xPos = rowXOffset + row.frame.minX + row.xOffsets[index - row.range.lowerBound] + bounds.minX
 				let rowYAlignment = (row.frame.height - subviews[index].sizeThatFits(.unspecified).height) *
-				alignment.vertical.percent
+					alignment.vertical.percent
 				let yPos = row.frame.minY + rowYAlignment + bounds.minY
 				subviews[index].place(at: CGPoint(x: xPos, y: yPos), anchor: .topLeading, proposal: .unspecified)
 			}
@@ -49,7 +49,7 @@ struct FlowLayout: Layout {
 			var frame: CGRect
 		}
 
-		init(in maxPossibleWidth: Double, subviews: Subviews, alignment: Alignment, spacing: CGFloat?) {
+		init(in maxPossibleWidth: Double, subviews: Subviews, alignment _: Alignment, spacing: CGFloat?) {
 			var itemsInRow = 0
 			var remainingWidth = maxPossibleWidth.isFinite ? maxPossibleWidth : .greatestFiniteMagnitude
 			var rowMinY = 0.0
@@ -90,7 +90,7 @@ struct FlowLayout: Layout {
 				itemsInRow += 1
 			}
 
-			func finalizeRow(index: Int, idealSize: CGSize) {
+			func finalizeRow(index: Int, idealSize _: CGSize) {
 				let rowWidth = maxPossibleWidth - remainingWidth
 				rows.append(
 					Row(
@@ -115,9 +115,9 @@ struct FlowLayout: Layout {
 private extension HorizontalAlignment {
 	var percent: Double {
 		switch self {
-			case .leading: return 0
-			case .trailing: return 1
-			default: return 0.5
+		case .leading: return 0
+		case .trailing: return 1
+		default: return 0.5
 		}
 	}
 }
@@ -125,9 +125,9 @@ private extension HorizontalAlignment {
 private extension VerticalAlignment {
 	var percent: Double {
 		switch self {
-			case .top: return 0
-			case .bottom: return 1
-			default: return 0.5
+		case .top: return 0
+		case .bottom: return 1
+		default: return 0.5
 		}
 	}
 }

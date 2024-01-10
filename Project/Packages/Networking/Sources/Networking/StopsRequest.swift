@@ -19,13 +19,13 @@ public struct StopsRequest: RemoteRequest {
 	public init() {}
 }
 
-extension StopsRequest {
-	public struct Response: Decodable {
+public extension StopsRequest {
+	struct Response: Decodable {
 		var stop: [Stop]
 		
 		public struct Stop: Decodable {
 			enum CodingKeys: String, CodingKey {
-				case lat, lon, name, routes, stopID = "stopId",ubica
+				case lat, lon, name, routes, stopID = "stopId", ubica
 			}
 			
 			let lat, lon, name, stopID, ubica: String
@@ -55,17 +55,17 @@ extension StopsRequest {
 				func encode(to encoder: Encoder) throws {
 					var container = encoder.singleValueContainer()
 					switch self {
-					case .single(let x):
+					case let .single(x):
 						try container.encode(x)
-					case .multiple(let x):
+					case let .multiple(x):
 						try container.encode(x)
 					}
 				}
 				
 				var array: [Route] {
 					switch self {
-					case .single(let route): return [route]
-					case .multiple(let routes): return routes
+					case let .single(route): return [route]
+					case let .multiple(routes): return routes
 					}
 				}
 			}
@@ -88,10 +88,10 @@ extension StopsRequest {
 extension StopsRequest.Response.Stop {
 	var stop: Model.Stop {
 		.init(id: stopID,
-					name: name,
-					address: ubica,
-					coordinate: .init(latitude: Double(lat) ?? 0, longitude: Double(lon) ?? 0),
-					lines: routes.rtI.array.map(\.linea))
+		      name: name,
+		      address: ubica,
+		      coordinate: .init(latitude: Double(lat) ?? 0, longitude: Double(lon) ?? 0),
+		      lines: routes.rtI.array.map(\.linea))
 	}
 }
 

@@ -9,16 +9,19 @@ let package = Package(
 	products: [
 		.library(
 			name: "Shared",
-			targets: ["Shared"]),
+			targets: ["Shared"]
+		),
 	],
 	dependencies: [
 	],
 	targets: [
 		.target(
 			name: "Shared",
-			dependencies: []),
+			dependencies: []
+		),
 		.testTarget(
 			name: "SharedTests",
-			dependencies: ["Shared"]),
+			dependencies: ["Shared"]
+		),
 	]
 )

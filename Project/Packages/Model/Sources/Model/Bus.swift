@@ -31,7 +31,7 @@ public extension Bus {
 	static let example = Bus(linea: "19", destination: "La Malvarosa", eta: .minutes(3))
 }
 
-public extension Array<Bus> {
+public extension [Bus] {
 	static let example = [
 		Bus(linea: "19", destination: "La Malvarosa", eta: .next),
 		Bus(linea: "6", destination: "Hospital La Fe", eta: .minutes(3)),
@@ -44,20 +44,20 @@ extension Bus.ETA: CustomStringConvertible {
 	public var description: String {
 		switch self {
 		case .next: return "now"
-		case .minutes(let int): return "\(int) min"
-		case .time(let time): return time
+		case let .minutes(int): return "\(int) min"
+		case let .time(time): return time
 		case .unknown: return "??"
 		}
 	}
 }
 
 extension Bus.ETA: Comparable {
-	public static func <(lhs: Bus.ETA, rhs: Bus.ETA) -> Bool {
+	public static func < (lhs: Bus.ETA, rhs: Bus.ETA) -> Bool {
 		switch (lhs, rhs) {
 		case (.next, _), (_, .unknown), (.minutes, .time): return true
 		case (_, .next), (.unknown, _), (.time, .minutes): return false
 		case(.time, .time): return true
-		case (.minutes(let ml), .minutes(let mr)): return ml < mr
+		case let (.minutes(ml), .minutes(mr)): return ml < mr
 		}
 	}
 }

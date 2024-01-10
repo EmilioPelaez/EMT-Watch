@@ -9,7 +9,8 @@ let package = Package(
 	products: [
 		.library(
 			name: "Networking",
-			targets: ["Networking"]),
+			targets: ["Networking"]
+		),
 	],
 	dependencies: [
 		.package(path: "../Shared"),
@@ -27,9 +28,11 @@ let package = Package(
 				"HierarchyResponder",
 				"Monarch",
 				"XMLCoder",
-			]),
+			]
+		),
 		.testTarget(
 			name: "NetworkingTests",
-			dependencies: ["Networking"]),
+			dependencies: ["Networking"]
+		),
 	]
 )

@@ -9,7 +9,8 @@ let package = Package(
 	products: [
 		.library(
 			name: "SharedUI",
-			targets: ["SharedUI"]),
+			targets: ["SharedUI"]
+		),
 	],
 	dependencies: [
 		.package(path: "../Shared"),
@@ -20,12 +21,14 @@ let package = Package(
 		.target(
 			name: "SharedUI",
 			dependencies: [
-			"Shared",
-			"CGMath",
-			"HierarchyResponder",
-			]),
+				"Shared",
+				"CGMath",
+				"HierarchyResponder",
+			]
+		),
 		.testTarget(
 			name: "SharedUITests",
-			dependencies: ["SharedUI"]),
+			dependencies: ["SharedUI"]
+		),
 	]
 )

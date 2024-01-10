@@ -8,8 +8,8 @@ struct StopsKey: EnvironmentKey {
 	static var defaultValue: DataState<[Stop]> = .uninitialized
 }
 
-extension EnvironmentValues {
-	public var stops: DataState<[Stop]> {
+public extension EnvironmentValues {
+	var stops: DataState<[Stop]> {
 		get { self[StopsKey.self] }
 		set { self[StopsKey.self] = newValue }
 	}

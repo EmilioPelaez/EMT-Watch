@@ -12,7 +12,7 @@ struct SearchScreen: View {
 	
 	var stops: [Stop] {
 		switch stopsData {
-		case .value(let stops): return stops
+		case let .value(stops): return stops
 		case _: return []
 		}
 	}

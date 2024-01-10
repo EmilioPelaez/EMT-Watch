@@ -38,13 +38,13 @@ extension Stop: Hashable {
 
 public extension Stop {
 	static let example = Stop(id: "729",
-														name: "Ruzafa",
-														address: "REINO DE VALENCIA",
-														coordinate: CLLocationCoordinate2D(latitude: 39.470022, longitude: -0.376823),
-														lines: [.example, .example, .example])
+	                          name: "Ruzafa",
+	                          address: "REINO DE VALENCIA",
+	                          coordinate: CLLocationCoordinate2D(latitude: 39.470022, longitude: -0.376823),
+	                          lines: [.example, .example, .example])
 }
 
-public extension Array<Stop> {
+public extension [Stop] {
 	static let example = [Stop.example]
 }
 

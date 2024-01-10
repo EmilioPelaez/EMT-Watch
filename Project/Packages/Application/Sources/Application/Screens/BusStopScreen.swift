@@ -19,7 +19,7 @@ struct BusStopScreen: View {
 	
 	var scrollable: Bool {
 		switch buses {
-		case .value(let buses) where !buses.isEmpty: return true
+		case let .value(buses) where !buses.isEmpty: return true
 		case _: return false
 		}
 	}
@@ -40,7 +40,7 @@ struct BusStopScreen: View {
 			.extendHorizontally(alignment: .leading)
 			Divider()
 			switch buses {
-			case .value(let buses) where !buses.isEmpty:
+			case let .value(buses) where !buses.isEmpty:
 				BusListView(buses: buses)
 			case _:
 				StateMessageView(state: buses)

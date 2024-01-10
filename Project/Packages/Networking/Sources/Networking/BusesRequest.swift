@@ -14,11 +14,12 @@ struct BusesRequest: RemoteRequest {
 	var query: [String: Any] {
 		[
 			"parada": stopId,
-		 "sec": "getSAE",
-		 "idioma": "en",
-		 "adaptados": false
+			"sec": "getSAE",
+			"idioma": "en",
+			"adaptados": false,
 		]
 	}
+
 	var preview: Response = .init(parada: .init(bus: []))
 	
 	init(stopId: String) {
@@ -49,8 +50,8 @@ extension BusesRequest {
 				
 				var isValid: Bool {
 					!linea.isEmpty
-					&& !destino.isEmpty
-					&& !(minutos ?? horaLlegada ?? "").isEmpty
+						&& !destino.isEmpty
+						&& !(minutos ?? horaLlegada ?? "").isEmpty
 				}
 			}
 		}

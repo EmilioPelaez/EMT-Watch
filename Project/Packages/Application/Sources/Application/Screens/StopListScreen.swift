@@ -15,7 +15,7 @@ struct StopListScreen: View {
 	var body: some View {
 		Group {
 			switch stops {
-			case .value(let stops):
+			case let .value(stops):
 				let filtered = BusStopSorter.sort(stops, favorites: favorites, location: location)
 				ContentView(favorites: filtered.favorites, nearby: filtered.nearby, all: filtered.all)
 			case _:

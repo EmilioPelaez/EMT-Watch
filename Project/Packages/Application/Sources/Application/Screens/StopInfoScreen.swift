@@ -22,7 +22,7 @@ struct StopInfoScreen: View {
 		List {
 			VStack(alignment: .leading) {
 				Label(stop.name, systemImage: "bus.fill")
-				.font(.body)
+					.font(.body)
 				Label(stop.address, systemImage: "mappin.circle")
 					.font(.caption2.smallCaps())
 					.foregroundColor(.secondary)
@@ -49,10 +49,10 @@ struct StopInfoScreen: View {
 	
 	var map: some View {
 		Map(coordinateRegion: $coordinate,
-				interactionModes: [],
-				showsUserLocation: true,
-				userTrackingMode: nil,
-				annotationItems: [stop]) { stop in
+		    interactionModes: [],
+		    showsUserLocation: true,
+		    userTrackingMode: nil,
+		    annotationItems: [stop]) { stop in
 			MapMarker(coordinate: stop.coordinate, tint: .red)
 		}
 	}

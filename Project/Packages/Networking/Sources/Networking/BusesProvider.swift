@@ -41,4 +41,3 @@ public extension View {
 		modifier(BusesProvider(stop: stop))
 	}
 }
-

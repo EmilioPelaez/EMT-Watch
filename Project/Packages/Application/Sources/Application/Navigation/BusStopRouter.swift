@@ -2,22 +2,22 @@
 //  Created by Emilio Peláez on 10/5/23.
 //
 
+import HierarchyResponder
 import Location
 import Model
 import Monarch
 import Networking
-import HierarchyResponder
 import SwiftUI
 
 struct BusStopRouter: View {
 	@State var route: [BusStopStep] = []
 	
 	var isSimulator: Bool {
-#if targetEnvironment(simulator)
-	true
-#else
-	false
-#endif
+		#if targetEnvironment(simulator)
+		true
+		#else
+		false
+		#endif
 	}
 	
 	var body: some View {
@@ -25,10 +25,10 @@ struct BusStopRouter: View {
 			StopListScreen()
 				.navigationDestination(for: BusStopStep.self) { step in
 					switch step {
-					case .schedule(let stop):
+					case let .schedule(stop):
 						BusStopScreen(stop: stop)
 							.busesProvider(for: stop)
-					case .info(let stop):
+					case let .info(stop):
 						StopInfoScreen(stop: stop)
 					case .search:
 						SearchScreen()
