@@ -7,7 +7,7 @@ import Model
 import Monarch
 import XMLCoder
 
-struct BusesRequest: Request {
+struct BusesRequest: RemoteRequest {
 	let stopId: String
 	
 	var path: String = "EMT/mapfunctions/MapUtilsPetitions.php"

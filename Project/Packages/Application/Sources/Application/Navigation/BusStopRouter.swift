@@ -42,7 +42,7 @@ struct BusStopRouter: View {
 		} else: {
 			$0.locationProvider()
 		}
-		.registerProvider(EMTClient())
+		.register(EMTClient())
 		.handleEvent(StopSelectedEvent.self) { route.append(.schedule($0.stop)) }
 		.handleEvent(StopInfoEvent.self) { route.append(.info($0.stop)) }
 		.handleEvent(StopSearchEvent.self) { route.append(.search) }

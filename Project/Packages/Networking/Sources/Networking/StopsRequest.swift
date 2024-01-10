@@ -5,7 +5,7 @@
 import Model
 import Monarch
 
-public struct StopsRequest: Request {
+public struct StopsRequest: RemoteRequest {
 	public let path: String = "opentripplanner-api-webapp/ws/metadata/stopsInExtent"
 	public var query: [String: Any] = [
 		"lowerCornerLat": 38.460022,
