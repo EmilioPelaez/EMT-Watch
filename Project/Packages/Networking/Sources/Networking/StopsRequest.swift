@@ -71,14 +71,11 @@ public extension StopsRequest {
 			}
 			
 			struct Route: Codable {
-				let headSign: String?
-				let idLinea, ln, sn: String
+				let name, number: String
 				
 				enum CodingKeys: String, CodingKey {
-					case headSign
-					case idLinea = "id_linea"
-					case ln = "LN"
-					case sn = "SN"
+					case name = "LN"
+					case number = "SN"
 				}
 			}
 		}
@@ -97,6 +94,6 @@ extension StopsRequest.Response.Stop {
 
 extension StopsRequest.Response.Stop.Route {
 	var linea: Line {
-		.init(lineNumber: idLinea, destination: headSign ?? ln)
+		.init(lineNumber: number, destination: name)
 	}
 }

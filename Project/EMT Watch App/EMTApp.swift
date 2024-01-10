@@ -9,7 +9,7 @@ import Application
 import SwiftUI
 
 @main
-struct EMT_Watch_AppApp: App {
+struct EMTWatchApp: App {
 	var body: some Scene {
 		WindowGroup {
 			Application()

@@ -163,6 +163,7 @@
 			buildConfigurationList = C8B7172C2A0AF1960041D53D /* Build configuration list for PBXNativeTarget "EMT Watch App" */;
 			buildPhases = (
 				C8B717182A0AF1950041D53D /* Sources */,
+				C8EFD4672B4F59EC0000D5EB /* SwiftLint */,
 				C8B717192A0AF1950041D53D /* Frameworks */,
 				C8B7171A2A0AF1950041D53D /* Resources */,
 			);
@@ -234,6 +235,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C8EFD4672B4F59EC0000D5EB /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C8B717182A0AF1950041D53D /* Sources */ = {

@@ -57,7 +57,7 @@ extension Bus.ETA: Comparable {
 		case (.next, _), (_, .unknown), (.minutes, .time): return true
 		case (_, .next), (.unknown, _), (.time, .minutes): return false
 		case(.time, .time): return true
-		case let (.minutes(ml), .minutes(mr)): return ml < mr
+		case let (.minutes(minutesL), .minutes(minutesR)): return minutesL < minutesR
 		}
 	}
 }
