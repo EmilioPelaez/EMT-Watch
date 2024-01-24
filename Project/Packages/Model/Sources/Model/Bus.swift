@@ -4,7 +4,7 @@
 
 import Foundation
 
-public struct Bus: Identifiable {
+public struct Bus: Identifiable, Equatable {
 	public enum ETA {
 		case next
 		case minutes(Int)

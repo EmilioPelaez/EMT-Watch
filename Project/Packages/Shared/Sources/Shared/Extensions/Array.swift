@@ -29,6 +29,10 @@ public extension Array where Element: Equatable {
 
 public extension Array {
 	
+	var notEmptyOrNil: [Element]? {
+		isEmpty ? nil : self
+	}
+	
 	func element(at index: Index) -> Element? {
 		guard index >= 0, index < count else { return nil }
 		return self[index]

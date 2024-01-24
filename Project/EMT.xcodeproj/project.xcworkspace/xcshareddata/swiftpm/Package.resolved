@@ -10,6 +10,24 @@
       }
     },
     {
+      "identity" : "hierarchyresponder",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/EmilioPelaez/HierarchyResponder",
+      "state" : {
+        "revision" : "6c4706eb17ba4adc0be160bf35c0a6d0cb31dafb",
+        "version" : "1.1.4"
+      }
+    },
+    {
+      "identity" : "monarch",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/EmilioPelaez/Monarch",
+      "state" : {
+        "branch" : "main",
+        "revision" : "7b91b41c3a789ac6762af0e800e67acd7254072f"
+      }
+    },
+    {
       "identity" : "xmlcoder",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/CoreOffice/XMLCoder",

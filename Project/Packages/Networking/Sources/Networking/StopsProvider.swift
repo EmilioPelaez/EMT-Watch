@@ -9,18 +9,16 @@ import SwiftUI
 struct StopsProvider: ViewModifier {
 	@Environment(\.reportError) var reportError
 	
-	@State var stops: DataState<[Stop]> = .uninitialized
+	@State var stops: Transient<[Stop]> = .uninitialized
 	
 	func body(content: Content) -> some View {
 		content
 			.request { monarch in
-				stops = .loading
-				do {
-					let response = try await monarch.perform(StopsRequest())
-					stops = .value(response.stop.map(\.stop))
-				} catch {
-					stops = .failure
-					reportError(error)
+				stops.start()
+				try await stops.load {
+					try await monarch.perform(StopsRequest())
+						.stop
+						.map(\.stop)
 				}
 			}
 			.environment(\.stops, stops)

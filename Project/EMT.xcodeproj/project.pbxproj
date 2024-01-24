@@ -40,10 +40,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C8470AAB2A0DBB4A00DDE59F /* Monarch */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Monarch; path = ../../../Frameworks/Monarch; sourceTree = "<group>"; };
 		C86A794D2A0AF69E0048D834 /* Shared */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Shared; path = Packages/Shared; sourceTree = "<group>"; };
 		C86A794E2A0AF6AB0048D834 /* SharedUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SharedUI; path = Packages/SharedUI; sourceTree = "<group>"; };
-		C86A794F2A0AF7710048D834 /* HierarchyResponder */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = HierarchyResponder; path = ../../../Frameworks/HierarchyResponder; sourceTree = "<group>"; };
 		C86A79502A0AFC650048D834 /* Model */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Model; path = Packages/Model; sourceTree = "<group>"; };
 		C891F5222A10E16D005E71B9 /* Valencia.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Valencia.gpx; sourceTree = "<group>"; };
 		C8B717162A0AF1950041D53D /* EMT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EMT.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,8 +123,6 @@
 				C86A79502A0AFC650048D834 /* Model */,
 				C8FCC20F2A10DCBA003344B8 /* Location */,
 				C8B717362A0AF44E0041D53D /* Networking */,
-				C86A794F2A0AF7710048D834 /* HierarchyResponder */,
-				C8470AAB2A0DBB4A00DDE59F /* Monarch */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -408,6 +404,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"EMT Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = FS696NSBK7;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = EMT;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "EMT Needs your location to display the closest bus stops.";
@@ -440,6 +437,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"EMT Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = FS696NSBK7;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = EMT;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "EMT Needs your location to display the closest bus stops.";

@@ -13,25 +13,23 @@ struct BusesProvider: ViewModifier {
 	
 	let stop: Stop
 	
-	@State var buses: DataState<[Bus]> = .uninitialized
+	@State var buses: Transient<[Bus]> = .uninitialized
 	
 	func body(content: Content) -> some View {
 		content
-			.onAppear(perform: update)
+			.request { _ in try await update() }
 			.handleEvent(RefreshEvent.self, handler: update)
 			.environment(\.buses, buses)
 	}
 	
-	func update() {
-		Task {
-			buses = .loading
-			do {
-				let response = try await monarch.perform(BusesRequest(stopId: stop.id))
-				buses = .value(response.parada.bus.filter(\.isValid).map(\.bus))
-			} catch {
-				buses = .failure
-				reportError(error)
-			}
+	func update() async throws {
+		buses.start()
+		try await buses.load {
+			try await monarch.perform(BusesRequest(stopId: stop.id))
+				.parada
+				.bus
+				.filter(\.isValid)
+				.map(\.bus)
 		}
 	}
 }

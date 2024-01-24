@@ -5,22 +5,24 @@
 import HierarchyResponder
 import Model
 import Networking
+import Shared
 import SharedUI
 import SwiftUI
 
 struct BusStopScreen: View {
 	@Environment(\.triggerEvent) var triggerEvent
 	@Environment(\.scenePhase) var scenePhase
-	@Environment(\.buses) var buses
+	@Environment(\.buses) var busesData
 	
 	let stop: Stop
 	
 	@State var lastRefresh: Date = .distantPast
 	
-	var scrollable: Bool {
-		switch buses {
-		case let .value(buses) where !buses.isEmpty: return true
-		case _: return false
+	var buses: [Bus] {
+		switch busesData {
+		case .value(let lines), .reloading(let lines): lines
+		case .failure(let lines, _): lines ?? []
+		case _: []
 		}
 	}
 	
@@ -29,25 +31,30 @@ struct BusStopScreen: View {
 			HStack {
 				Label(stop.name, systemImage: "bus.fill")
 					.extendHorizontally(alignment: .leading)
-				EventButton(RefreshEvent()) {
-					Image(systemName: "arrow.counterclockwise")
-						.symbolVariant(.circle)
-						.font(.title3)
+				ZStack {
+					ProgressView()
+						.opacity(busesData.isLoading ? 1 : 0)
+					EventButton(RefreshEvent()) {
+						Image(systemName: "arrow.counterclockwise")
+							.symbolVariant(.circle)
+							.font(.title3)
+					}
+					.opacity(busesData.isLoading ? 0 : 1)
 				}
+				.fixedSize()
 				.buttonStyle(.plain)
 			}
 			.font(.caption2)
 			.extendHorizontally(alignment: .leading)
 			Divider()
-			switch buses {
-			case let .value(buses) where !buses.isEmpty:
+			if let buses = buses.notEmptyOrNil {
 				BusListView(buses: buses)
-			case _:
-				StateMessageView(state: buses)
+			} else {
+				StateMessageView(state: busesData)
 					.extendVertically()
 			}
 		}
-		.scrollable(scrollable)
+		.scrollable(!buses.isEmpty)
 		.navigationTitle("Buses")
 		.navigationBarTitleDisplayMode(.inline)
 		.onAppear { lastRefresh = .now }
@@ -67,7 +74,7 @@ struct BusStopScreen_Previews: PreviewProvider {
 		}
 		NavigationStack {
 			BusStopScreen(stop: .example)
-				.environment(\.buses, .failure)
+				.environment(\.buses, .failure(nil, DummyError()))
 		}
 	}
 }

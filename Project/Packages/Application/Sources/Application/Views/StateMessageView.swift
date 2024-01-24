@@ -6,17 +6,21 @@ import Model
 import SwiftUI
 
 struct StateMessageView<T>: View {
-	let state: DataState<T>
+	let state: Transient<T>
+	
+	init(state: Transient<T>) {
+		self.state = state
+	}
 	
 	var body: some View {
 		switch state {
 		case .uninitialized:
 			Image(systemName: "ellipsis.circle")
 				.font(.system(size: 50))
-				.foregroundColor(.primary)
-		case .loading:
+				.foregroundColor(.yellow)
+		case .loading, .reloading:
 			ProgressView()
-		case .value:
+		case .empty, .value:
 			Image(systemName: "nosign.app")
 				.font(.system(size: 50))
 				.foregroundColor(.primary)
@@ -30,9 +34,11 @@ struct StateMessageView<T>: View {
 
 struct StateMessageView_Previews: PreviewProvider {
 	static var previews: some View {
-		StateMessageView(state: DataState<String>.uninitialized)
-		StateMessageView(state: DataState<String>.loading)
-		StateMessageView(state: DataState<String>.value(""))
-		StateMessageView(state: DataState<String>.failure)
+		StateMessageView(state: Transient<String>.uninitialized)
+		StateMessageView(state: Transient<String>.loading)
+		StateMessageView(state: Transient<String>.value(""))
+		StateMessageView(state: Transient<String>.failure(nil, DummyError()))
 	}
 }
+
+struct DummyError: Error {}

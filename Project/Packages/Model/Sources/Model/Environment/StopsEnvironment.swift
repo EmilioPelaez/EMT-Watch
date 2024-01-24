@@ -5,11 +5,11 @@
 import SwiftUI
 
 struct StopsKey: EnvironmentKey {
-	static var defaultValue: DataState<[Stop]> = .uninitialized
+	static var defaultValue: Transient<[Stop]> = .uninitialized
 }
 
 public extension EnvironmentValues {
-	var stops: DataState<[Stop]> {
+	var stops: Transient<[Stop]> {
 		get { self[StopsKey.self] }
 		set { self[StopsKey.self] = newValue }
 	}
